@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script id="tinyhippos-injected">
+    if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }
+  </script>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Uk">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>The Nigerian Prisons Service</title>
+
+    <link rel="icon" type="image/png" href="<%= static_path(@conn, "/images/favicon.png") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/simple-line-icons.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/style.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/style(1).css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/style(2).css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/animate.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/slick.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/typed.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/hs.megamenu.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/hamburgers.min.css") %>">
+
+  <!-- CSS Unify -->
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/unify-core.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/unify-components.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/unify-globals.css") %>">
+
+  <!-- CSS Customization -->
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/custom.css") %>">
+
+  <!-- jQuery 2.2.3 -->
+  <link rel="stylesheet" href="<%= static_path(@conn, "/plugins/jQuery/jquery-2.2.3.min.js") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css") %>">
+  <link rel="stylesheet" href="<%= static_path(@conn, "/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js") %>">
+
+<script>
+
+  $( function() {
+    
+    $(".datepicker" ).datepicker();
+   
+  });
+  </script>
+
+  <style>
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+    display: none !important;
+}
+</style>
+
+  </head>
+
+  <body ng-app="nps">
+      <main role="main">
+        <!-- Header -->
+        <header id="js-header" class="u-header u-header--static">
+          <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+            <nav class="js-mega-menu navbar navbar-expand-lg" style="padding-top:0;padding-bottom:0;">
+              <div class="container">
+                <!-- Responsive Toggle Button -->
+                <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+                  <span class="hamburger hamburger--slider">
+                <span class="hamburger-box">
+                  <span class="hamburger-inner"></span>
+                  </span>
+                  </span>
+                </button>
+                <!-- End Responsive Toggle Button -->
+
+                <!-- Logo -->
+                <a href="http://www.prisons.gov.ng/#" class="navbar-brand" style="padding:0;margin:0">
+                  <img src="<%= static_path(@conn, "/images/logo2.png") %>" alt="NPS Logo" style="max-width:140px">
+                </a>
+                <!-- End Logo -->
+
+                <!-- Navigation -->
+
+                <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg g-mr-40--lg" id="navBar">
+
+                  <ul class="navbar-nav text-uppercase g-font-weight-600 ml-auto" style="display:nne;">
+
+                    <!-- Intro -->
+                    <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                      <a href="http://www.prisons.gov.ng" class="nav-link g-py-7 g-px-0">Home</a>
+                    </li>
+                    <!-- End Intro -->
+
+                    <!-- Home -->
+                   <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                      <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-expanded="false" aria-controls="nav-submenu--features">About NPS</a>
+
+                      <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-21 g-mt-11--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
+                        <!-- Features - Headers -->
+                        <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/history_of_nps">History of NPS</a>
+                        </li>
+
+                        <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/mission_vision">Mission/Vision/Functions</a>
+                        </li>
+
+                           <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/roll_of_honours">Roll of Honor</a>
+                        </li>
+                        <!-- End Features - Footers -->
+                      </ul>
+                    </li>
+
+
+                  <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                      <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">Directorate</a>
+
+                      <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-21 g-mt-11--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
+                        <!-- Features - Headers -->
+                        <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/operations">Operations</a>
+                        </li>
+
+                        <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/admin_supplies">Admin/Supply</a>
+                        </li>
+
+                           <li class="dropdown-item ">
+                          <a class="nav-link" href="inmates_training">Inmates' Training & Productivity</a>
+                        </li>
+
+                          <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/finance_budget">Finance & Budget</a>
+                        </li>
+                          <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/works_logistics">Works & Logistics</a>
+                        </li>
+                          <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/health_social_welfare">Health & Social Welfare</a>
+                        </li>
+                        <!-- End Features - Footers -->
+                      </ul>
+                    </li>
+
+                  <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                      <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">Structure</a>
+
+                      <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-21 g-mt-11--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
+                        <!-- Features - Headers -->
+                        <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/admin_structure">Admin Structure</a>
+                        </li>
+
+                        <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/command_structure">Command Structure</a>
+                        </li>
+
+
+                        <!-- End Features - Footers -->
+                      </ul>
+                    </li>
+
+                <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                      <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">Statistics</a>
+
+                      <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-21 g-mt-11--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
+                        <!-- Features - Headers -->
+                        <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/statistics">Prison Statistics</a>
+                        </li>
+
+                        <li class="dropdown-item ">
+                          <a class="nav-link" href="http://www.prisons.gov.ng/prison_locations">Prison Location</a>
+                        </li>
+
+
+                        <!-- End Features - Footers -->
+                      </ul>
+                    </li>
+
+                <li class="nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                      <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="http://www.prisons.gov.ng/contact_us" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">Contact Us</a>
+
+                    </li>
+
+                <li class="nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                      <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="https://recruit.prisonsportal.com.ng/recruit" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">Recruitment</a>
+
+                    </li>
+                  </ul>
+
+                  <!--<br/>
+                  <div class="marquee">We are Hiring!</div>
+                  -->
+
+                </div>
+
+                <!-- End Navigation -->
+              </div>
+
+            </nav>
+
+          </div>
+        </header>
+        <!-- End Header -->
+
+        <%= render @view_module, @view_template, assigns %>
+
+        <!-- Copyright Footer -->
+        <footer class="g-bg-gray-dark-v1 g-color-white-opacity-0_8 g-py-20">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 text-center text-md-left g-mb-10 g-mb-0--md">
+                <div class="d-lg-flex">
+                  <small class="d-block g-font-size-default g-mr-10 g-mb-10 g-mb-0--md"><?php echo date('Y');?> © All Rights Reserved.</small>
+                  <ul class="u-list-inline" style="display:none">
+                    <li class="list-inline-item">
+                      <a class="g-color-white-opacity-0_8 g-color-white--hover" href="https://htmlstream.com/preview/unify-v2.2/unify-main/home/home-page-10.html#">Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item">
+                      <span>|</span>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="g-color-white-opacity-0_8 g-color-white--hover" href="https://htmlstream.com/preview/unify-v2.2/unify-main/home/home-page-10.html#">Terms of Use</a>
+                    </li>
+                    <li class="list-inline-item">
+                      <span>|</span>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="g-color-white-opacity-0_8 g-color-white--hover" href="https://htmlstream.com/preview/unify-v2.2/unify-main/home/home-page-10.html#">License</a>
+                    </li>
+                    <li class="list-inline-item">
+                      <span>|</span>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="g-color-white-opacity-0_8 g-color-white--hover" href="https://htmlstream.com/preview/unify-v2.2/unify-main/home/home-page-10.html#">Support</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-4 align-self-center">
+                <ul class="list-inline text-center text-md-right mb-0">
+                  <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                    <a href="https://facebook.com/nigps" target="_blank" class="g-color-white-opacity-0_5 g-color-white--hover">
+                      <i class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+                 
+                  <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                    <a href="https://twitter.com/npsreformer" target="_blank" class="g-color-white-opacity-0_5 g-color-white--hover">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+      </main>
+
+      <div class="u-outer-spaces-helper"></div>
+      <!-- JS Global Compulsory -->
+      <script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/jquery-migrate.min.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/jquery.easing.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/popper.min.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/bootstrap.min.js") %>"></script>
+
+      <!-- JS Implementing Plugins -->
+      <script src="<%= static_path(@conn, "/js/appear.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/hs.megamenu.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/slick.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/typed.min.js") %>"></script>
+
+      <!-- JS Unify -->
+      <script src="<%= static_path(@conn, "/js/hs.core.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/hs.carousel.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/hs.header.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/hs.hamburgers.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/hs.tabs.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/hs.text-slideshow.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/hs.go-to.js") %>"></script>
+
+      <!-- JS Customization -->
+      <script src="<%= static_path(@conn, "/js/custom.js") %>"></script>
+
+        <!-- bootstrap datepicker -->
+      <script src="<%= static_path(@conn, "/plugins/datepicker/bootstrap-datepicker.js") %>"></script>
+
+        <!-- JS Plugins Init. -->
+        <script>
+          $(document).on('ready', function () {
+              // initialization of carousel
+              $.HSCore.components.HSCarousel.init('.js-carousel');
+
+              $('#clients').slick('setOption', 'responsive', [{
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 2
+                }
+              }], true);
+
+              // initialization of tabs
+              $.HSCore.components.HSTabs.init('[role="tablist"]');
+
+              // initialization of text animation (typing)
+              $(".u-text-animation.u-text-animation--typing").typed({
+                strings: [
+                  "awesome",
+                  "creative",
+                  "unify"
+                ],
+                typeSpeed: 60,
+                loop: true,
+                backDelay: 1500
+              });
+
+              // initialization of go to
+              $.HSCore.components.HSGoTo.init('.js-go-to');
+            });
+
+            $(window).on('load', function () {
+              // initialization of header
+              $.HSCore.components.HSHeader.init($('#js-header'));
+              $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+              // initialization of HSMegaMenu component
+              $('.js-mega-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 991
+              });
+            });
+
+            $(window).on('resize', function () {
+              setTimeout(function () {
+                $.HSCore.components.HSTabs.init('[role="tablist"]');
+              }, 200);
+            });
+        </script>
+
+
+      <!----LIBRARIES-->
+      <script src="<%= static_path(@conn, "/angular/angular.js") %>"></script>
+      <script src="<%= static_path(@conn, "/angular/angular-route.js") %>"></script>
+      <script src="<%= static_path(@conn, "/js/dirPagination.js") %>"></script>
+      <script src="<%= static_path(@conn, "/angular/angular-sanitize.js") %>"></script>
+      <script src="<%= static_path(@conn, "/angular/angular-cookies.js") %>"></script>
+
+      <!----MODULE-->
+      <script src="<%= static_path(@conn, "/js/controllers/module.js") %>"></script>
+
+      <!--- CONTROLLERS---->
+      <%= for js <- assigns[:js] do %>
+        <script src="<%= static_path(@conn, js) %>"></script>
+      <% end %>
+
+    <script src="<%= static_path(@conn, "/js/controllers/directives.js") %>"></script>
+  </body>
+</html>
