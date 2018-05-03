@@ -4,7 +4,7 @@ defmodule Recruitment.Repo.Migrations.CreateAttachmentsList do
   def change do
     create table(:attachments_list) do
       add :degree, :string
-      add :status, :string
+      add :status, :integer
     end
 
   end

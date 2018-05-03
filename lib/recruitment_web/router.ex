@@ -14,6 +14,16 @@ defmodule RecruitmentWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/recruit_api", RecruitmentWeb do
+    pipe_through :api
+
+    get "/get_all_related_tables", ApiController, :get_all_related_tables
+    get "/get_positions", ApiController, :get_positions
+    get "/get_qualifications", ApiController, :get_qualifications
+    get "/get_applicant_details", ApiController, :get_applicant_details
+    get "/delete_result", ApiController, :delete_result
+  end
+
   scope "/", RecruitmentWeb do
     pipe_through :browser # Use the default browser stack
 
@@ -30,13 +40,11 @@ defmodule RecruitmentWeb.Router do
     get "/recruit/attachments", PageController, :attachments
     post "/recruit/attachments", PageController, :attachments_post
     get "/recruit/done", PageController, :done
+    get "/recruit/info", PageController, :info
     post "/recruit/logout", PageController, :logout
     get "/recruit/logout", PageController, :logout
     get "/*path", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", RecruitmentWeb do
-  #   pipe_through :api
-  # end
 end

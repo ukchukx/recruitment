@@ -770,4 +770,66 @@ defmodule Recruitment.RecruitTest do
       assert %Ecto.Changeset{} = Recruit.change_sub_position(sub_position)
     end
   end
+
+  describe "result_classifications" do
+    alias Recruitment.Recruit.ResultClassification
+
+    @valid_attrs %{classification: "some classification", status: 42}
+    @update_attrs %{classification: "some updated classification", status: 43}
+    @invalid_attrs %{classification: nil, status: nil}
+
+    def result_classification_fixture(attrs \\ %{}) do
+      {:ok, result_classification} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Recruit.create_result_classification()
+
+      result_classification
+    end
+
+    test "list_result_classifications/0 returns all result_classifications" do
+      result_classification = result_classification_fixture()
+      assert Recruit.list_result_classifications() == [result_classification]
+    end
+
+    test "get_result_classification!/1 returns the result_classification with given id" do
+      result_classification = result_classification_fixture()
+      assert Recruit.get_result_classification!(result_classification.id) == result_classification
+    end
+
+    test "create_result_classification/1 with valid data creates a result_classification" do
+      assert {:ok, %ResultClassification{} = result_classification} = Recruit.create_result_classification(@valid_attrs)
+      assert result_classification.classification == "some classification"
+      assert result_classification.status == 42
+    end
+
+    test "create_result_classification/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Recruit.create_result_classification(@invalid_attrs)
+    end
+
+    test "update_result_classification/2 with valid data updates the result_classification" do
+      result_classification = result_classification_fixture()
+      assert {:ok, result_classification} = Recruit.update_result_classification(result_classification, @update_attrs)
+      assert %ResultClassification{} = result_classification
+      assert result_classification.classification == "some updated classification"
+      assert result_classification.status == 43
+    end
+
+    test "update_result_classification/2 with invalid data returns error changeset" do
+      result_classification = result_classification_fixture()
+      assert {:error, %Ecto.Changeset{}} = Recruit.update_result_classification(result_classification, @invalid_attrs)
+      assert result_classification == Recruit.get_result_classification!(result_classification.id)
+    end
+
+    test "delete_result_classification/1 deletes the result_classification" do
+      result_classification = result_classification_fixture()
+      assert {:ok, %ResultClassification{}} = Recruit.delete_result_classification(result_classification)
+      assert_raise Ecto.NoResultsError, fn -> Recruit.get_result_classification!(result_classification.id) end
+    end
+
+    test "change_result_classification/1 returns a result_classification changeset" do
+      result_classification = result_classification_fixture()
+      assert %Ecto.Changeset{} = Recruit.change_result_classification(result_classification)
+    end
+  end
 end

@@ -50,7 +50,7 @@
       <h4>Upload all your <strong>Credentials</strong></h4>
     </div>
     
-      <h5><%= echo @position.hint %> to complete the registration process</h5>
+      <h5><%= @position.hint %> to complete the registration process</h5>
   
   </header>
   <hr/>
@@ -162,7 +162,7 @@
         <a class="btn btn-md btn-danger" href="/recruit/logout">Logout</a>
       </form>
     </div>
-    <%= for @files_attached do %>
+    <%= if @files_attached do %>
     <div class="col-sm-6 text-center">
             <span style="text-align: center">Your details can no longer be edited after final submission.</span>
       <form action="" method="post">

@@ -5,7 +5,7 @@ defmodule Recruitment.Recruit.AttachmentList do
 
   schema "attachments_list" do
     field :degree, :string
-    field :status, :string
+    field :status, :integer
   end
 
   @doc false

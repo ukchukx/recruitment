@@ -24,6 +24,10 @@ defmodule RecruitmentWeb.PageController do
     end
   end
 
+  def info(conn, _) do
+    render conn, "info.html", @base_assigns
+  end
+
   def login_signup(conn, %{"form" => form_type} = params) do
     case form_type do
       "signup" ->
@@ -113,11 +117,12 @@ defmodule RecruitmentWeb.PageController do
     |> redirect(to: page_path(conn, :index))
   end
 
-  def positions(%{assigns: %{user_id: user_id}} = conn, _params) do
-    js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+  def positions(%{assigns: %{current_user: current_user}} = conn, _params) do
+    js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
     assigns = 
       %{@base_assigns | js: js}
-      |> Map.put(:user_id, user_id)
+      |> Map.put(:current_user, current_user)
+      |> Map.put(:msg, nil)
 
     render conn, "positions.html", assigns
   end
@@ -125,7 +130,7 @@ defmodule RecruitmentWeb.PageController do
   def positions_post(%{assigns: %{current_user: current_user}} = conn, params) do
     case params["position_applied_for"] do
       nil ->
-        js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+        js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
         assigns = 
           %{@base_assigns | js: js}
           |> Map.put(:msg, "Please select position")
@@ -208,7 +213,7 @@ defmodule RecruitmentWeb.PageController do
         end)
 
 
-        js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+        js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
         assigns = 
           %{@base_assigns | js: js}
           |> Map.put(:current_user, current_user)
@@ -238,7 +243,7 @@ defmodule RecruitmentWeb.PageController do
 
         countries = Recruit.list_countries()
 
-        js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+        js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
         assigns = 
           %{@base_assigns | js: js}
           |> Map.put(:current_user, current_user)
@@ -359,7 +364,7 @@ defmodule RecruitmentWeb.PageController do
     attachments_list = Recruit.list_attachments_list()
     position = Recruit.load_chosen_position(current_user.position_applied_for)
 
-    js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+    js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
     assigns = 
       %{@base_assigns | js: js}
       |> Map.put(:current_user, current_user)

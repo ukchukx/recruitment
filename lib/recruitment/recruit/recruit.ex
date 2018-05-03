@@ -20,7 +20,8 @@ defmodule Recruitment.Recruit do
     ProfessionalQualification,
     EducationalQualification,
     Position,
-    SubPosition
+    SubPosition,
+    ResultClassification
   }
 
 
@@ -89,13 +90,103 @@ defmodule Recruitment.Recruit do
           reference: "NPS/#{state_short_code}/#{short_code}#{sub_position_id}/#{rand}",
           completed: 1
         }
-        update_recruit(current_user, attrs)
+        update_recruit(recruit, attrs)
         
       x -> 
        Logger.error("Error in set_complete: #{inspect x}") 
        {:error, :set_complete_failed}
     end 
   end
+
+  def get_all_related_tables do
+    %{
+      type_of_degrees: (from a in AttachmentList, order_by: a.degree, where: a.status == 1)
+        |> Repo.all
+        |> Enum.map(&as_map/1),
+      classification: (from a in ResultClassification, where: a.status == 1)
+        |> Repo.all
+        |> Enum.map(&as_map/1),
+      countries: list_countries() |> Enum.map(&as_map/1)   
+    }
+  end
+
+  def get_positions(id) do
+    %{
+      positions: (from a in Position, where: a.status == 1)
+        |> Repo.all
+        |> Enum.map(&as_map/1),
+      sub_positions: (from a in SubPosition, where: a.status == 1)
+        |> Repo.all
+        |> Enum.map(&as_map/1),
+      user_details: get_recruit!(id) |> as_map 
+    }
+  end
+
+  def get_qualifications(id) do
+    %{
+      qualifications: (from a in EducationalQualification, where: a.recruit_id == ^id)
+        |> Repo.all
+        |> Enum.map(&as_map/1),
+      professionals: (from a in ProfessionalQualification, where: a.recruit_id == ^id)
+        |> Repo.all
+        |> Enum.map(&as_map/1)
+    }
+  end
+
+  def get_applicant_details(id) do
+    PersonalDetail
+    |> join(:inner, [p], r in Recruit, r.id == p.recruit_id)
+    |> join(:inner, [_p, r], s in SubPosition, s.sub_position_id == r.position_applied_for)
+    |> join(:inner, [_p, _r, s], pos in Position, pos.id == s.position_id)
+    |> where([p, _r, _s, _pos], p.recruit_id == ^id)
+    |> select([p, r, s, pos], %{
+      id: r.id,
+      fname: r.fname,
+      sname: r.sname,
+      email: r.email,
+      password: r.password,
+      reference: r.reference,
+      completed: r.completed,
+      position_category: r.position_category,
+      position_applied_for: r.position_applied_for,
+      application_stage: r.application_stage,
+      accepted: r.accepted,
+      denied: r.denied,
+      verified: r.verified,
+      cg_approval: r.cg_approval,
+      recruit_id: p.recruit_id,
+      details_title: p.title,
+      mname: p.mname,
+      gender: p.gender,
+      nationality: p.nationality,
+      dob: p.dob,
+      age: p.age,
+      height: p.height,
+      nin: p.nin,
+      phone: p.phone,
+      permAddress: p.permAddress,
+      permStreet: p.permStreet,
+      permLga: p.permLga,
+      permState: p.permState,
+      curAddress: p.curAddress,
+      curStreet: p.curStreet,
+      curLga: p.curLga,
+      curState: p.curState,
+      prefAddress: p.prefAddress,
+      stage: p.stage,
+      status: p.status,
+      sub_title: s.sub_title,
+      position_id: s.position_id,
+      hint: s.hint,
+      title: pos.title,
+      })
+    |> limit(1)
+    |> Repo.all
+    |> List.first
+  end
+
+  defp as_map(%Recruit{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :attachments, :personal_detail, :educational_qualifications, :professional_qualifications, :work_experience])
+  defp as_map(struct), do: struct |> Map.from_struct |> Map.delete(:__meta__)
 
   def signin_with_email_and_password(conn, email, pass) do
     recruit = Repo.get_by(Recruit, email: email)
@@ -1143,5 +1234,99 @@ defmodule Recruitment.Recruit do
   """
   def change_sub_position(%SubPosition{} = sub_position) do
     SubPosition.changeset(sub_position, %{})
+  end
+
+  @doc """
+  Returns the list of result_classifications.
+
+  ## Examples
+
+      iex> list_result_classifications()
+      [%ResultClassification{}, ...]
+
+  """
+  def list_result_classifications do
+    Repo.all(ResultClassification)
+  end
+
+  @doc """
+  Gets a single result_classification.
+
+  Raises `Ecto.NoResultsError` if the Result classification does not exist.
+
+  ## Examples
+
+      iex> get_result_classification!(123)
+      %ResultClassification{}
+
+      iex> get_result_classification!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_result_classification!(id), do: Repo.get!(ResultClassification, id)
+
+  @doc """
+  Creates a result_classification.
+
+  ## Examples
+
+      iex> create_result_classification(%{field: value})
+      {:ok, %ResultClassification{}}
+
+      iex> create_result_classification(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_result_classification(attrs \\ %{}) do
+    %ResultClassification{}
+    |> ResultClassification.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a result_classification.
+
+  ## Examples
+
+      iex> update_result_classification(result_classification, %{field: new_value})
+      {:ok, %ResultClassification{}}
+
+      iex> update_result_classification(result_classification, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_result_classification(%ResultClassification{} = result_classification, attrs) do
+    result_classification
+    |> ResultClassification.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a ResultClassification.
+
+  ## Examples
+
+      iex> delete_result_classification(result_classification)
+      {:ok, %ResultClassification{}}
+
+      iex> delete_result_classification(result_classification)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_result_classification(%ResultClassification{} = result_classification) do
+    Repo.delete(result_classification)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking result_classification changes.
+
+  ## Examples
+
+      iex> change_result_classification(result_classification)
+      %Ecto.Changeset{source: %ResultClassification{}}
+
+  """
+  def change_result_classification(%ResultClassification{} = result_classification) do
+    ResultClassification.changeset(result_classification, %{})
   end
 end

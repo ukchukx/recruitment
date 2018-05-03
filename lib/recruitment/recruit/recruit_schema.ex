@@ -17,7 +17,7 @@ defmodule Recruitment.Recruit.Recruit do
     field :email, :string
     field :fname, :string
     field :sname, :string
-    field :reference, :string
+    field :reference, :string, default: ""
     field :position_category, :integer, default: 0
     field :position_applied_for, :integer, default: 0
     field :accepted, :integer, default: 0

@@ -6,6 +6,7 @@
     $scope.dirlocation=datagrab.dirlocation;
     $scope.currentPage = 1;
     $scope.pageSize = 10;
+    datagrab.completeUrlLocation = "/";
 
     //////////FETCH ALL RELATED TABLES
    $http.get(datagrab.completeUrlLocation+"recruit_api/get_all_related_tables")

@@ -35,9 +35,9 @@
   <link rel="stylesheet" href="<%= static_path(@conn, "/css/custom.css") %>">
 
   <!-- jQuery 2.2.3 -->
-  <link rel="stylesheet" href="<%= static_path(@conn, "/plugins/jQuery/jquery-2.2.3.min.js") %>">
+  <script src="<%= static_path(@conn, "/plugins/jQuery/jquery-2.2.3.min.js") %>"></script>
+  <script src="<%= static_path(@conn, "/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js") %>"></script>
   <link rel="stylesheet" href="<%= static_path(@conn, "/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js") %>">
 
 <script>
 
