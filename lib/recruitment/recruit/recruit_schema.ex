@@ -9,28 +9,35 @@ defmodule Recruitment.Recruit.Recruit do
     EducationalQualification
   }
 
+  @fields [:fname, :sname, :email, :password, :completed, :application_stage, :position_category,
+    :position_applied_for, :accepted, :denied, :verified, :cg_approval, :reference]
+
 
   schema "recruit" do
     field :email, :string
     field :fname, :string
+    field :sname, :string
+    field :reference, :string
+    field :position_category, :integer, default: 0
+    field :position_applied_for, :integer, default: 0
+    field :accepted, :integer, default: 0
+    field :denied, :integer, default: 0
+    field :verified, :integer, default: 0
+    field :cg_approval, :integer, default: 0
     field :completed, :integer, default: 0
     field :application_stage, :integer, default: 0
     field :password, :string
-    field :sname, :string
     has_one :personal_detail, PersonalDetail
-    has_many :educational_qualification, EducationalQualification
-    has_many :professional_qualification, ProfessionalQualification
+    has_many :educational_qualifications, EducationalQualification
+    has_many :professional_qualifications, ProfessionalQualification
     has_many :work_experience, WorkExperience
-    has_many :attachment, Attachment
-
-    timestamps()
+    has_many :attachments, Attachment
   end
 
   @doc false
   def changeset(data, attrs) do
     data
-    |> cast(attrs, [:fname, :sname, :email, :password, :completed, :application_stage])
-    |> validate_required([:fname, :sname, :email, :password])
+    |> cast(attrs, @fields)
     |> put_pass_hash
   end
 

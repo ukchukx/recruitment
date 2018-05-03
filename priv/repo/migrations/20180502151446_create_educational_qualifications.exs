@@ -13,8 +13,6 @@ defmodule Recruitment.Repo.Migrations.CreateEducationalQualifications do
       add :city, :string
       add :country, :string
       add :recruit_id, references(:recruit, on_delete: :nothing)
-
-      timestamps()
     end
 
     create index(:educational_qualifications, [:recruit_id])

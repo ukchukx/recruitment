@@ -5,8 +5,6 @@ defmodule Recruitment.Recruit.Country do
 
   schema "countries" do
     field :name, :string
-
-    timestamps()
   end
 
   @doc false

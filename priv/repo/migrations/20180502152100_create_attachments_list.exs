@@ -5,8 +5,6 @@ defmodule Recruitment.Repo.Migrations.CreateAttachmentsList do
     create table(:attachments_list) do
       add :degree, :string
       add :status, :string
-
-      timestamps()
     end
 
   end

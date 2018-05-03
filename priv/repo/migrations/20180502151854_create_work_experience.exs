@@ -8,8 +8,6 @@ defmodule Recruitment.Repo.Migrations.CreateWorkExperience do
       add :role, :string
       add :organization, :string
       add :recruit_id, references(:recruit, on_delete: :nothing)
-
-      timestamps()
     end
 
     create index(:work_experience, [:recruit_id])

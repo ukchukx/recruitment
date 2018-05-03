@@ -6,14 +6,13 @@ defmodule Recruitment.Recruit.Lga do
   schema "lgas" do
     field :name, :string
     field :state, :string
-
-    timestamps()
+    field :state_short_code, :string
   end
 
   @doc false
   def changeset(lga, attrs) do
     lga
-    |> cast(attrs, [:state, :name])
-    |> validate_required([:state, :name])
+    |> cast(attrs, [:state, :name, :state_short_code])
+    |> validate_required([:state, :name, :state_short_code])
   end
 end

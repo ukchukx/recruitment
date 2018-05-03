@@ -15,8 +15,6 @@ defmodule Recruitment.Recruit.EducationalQualification do
     field :startdate, :string
     field :type, :string
     belongs_to :recruit, Recruit
-
-    timestamps()
   end
 
   @doc false

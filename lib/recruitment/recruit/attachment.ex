@@ -7,9 +7,8 @@ defmodule Recruitment.Recruit.Attachment do
   schema "attachments" do
     field :path, :string
     field :title, :string
+    field :file_type, :string
     belongs_to :recruit, Recruit
-
-    timestamps()
   end
 
   @doc false

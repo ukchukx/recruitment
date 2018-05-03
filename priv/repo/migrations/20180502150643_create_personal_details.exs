@@ -20,14 +20,9 @@ defmodule Recruitment.Repo.Migrations.CreatePersonalDetails do
       add :curLga, :string
       add :curState, :string
       add :prefAddress, :string
-      add :completed, :integer
-      add :accepted, :integer
-      add :denied, :integer
-      add :verified, :integer
+      add :stage, :integer
       add :status, :integer
       add :recruit_id, references(:recruit, on_delete: :nothing)
-
-      timestamps()
     end
 
     create index(:personal_details, [:recruit_id])

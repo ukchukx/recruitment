@@ -35,9 +35,9 @@
       <div class="col-lg-4 g-bg-teal g-bg-white-gradient-opacity-v1" style="">
         <div class="g-pa-30" style="padding:10 0 !important">
           <!-- Form -->
-          <form action="/recruit/" method="post" onsubmit="return validateLoginForm();">
+          <form action="" method="post" onsubmit="return validateLoginForm();">
             <input type="hidden" name="form" value="login">
-            <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+            <input type="hidden" name="_csrf_token" value="<%= csrf_token(@conn) %>">
             <h2 class="h4 g-color-white mb-4">
               Already Registered 
             </h2>
@@ -80,9 +80,9 @@
       <div class="col-lg-4 g-bg-white g-rounded-right-5--lg-up">
         <div class="g-pa-30">
           <!-- Form -->
-          <form id="signupForm" action="/recruit/" class="" method="post" onsubmit="return validateSignupForm();">
+          <form id="signupForm" action="" class="" method="post" onsubmit="return validateSignupForm();">
             <input type="hidden" name="form" value="signup">
-            <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+            <input type="hidden" name="_csrf_token" value="<%= csrf_token(@conn) %>">
             <h3 class="h4 g-color-black mb-4">New Applicant</h2>
             <div class="mb-4">
               <div class="input-group rounded">
@@ -98,7 +98,7 @@
                 <span class="input-group-addon g-width-45 g-brd-gray-light-v4 g-color-gray-dark-v5">
                       <i class="fa fa-user"></i>
                     </span>
-                <input required name="lname" class="form-control g-color-black g-brd-left-none g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-pl-0 g-pr-15 g-py-13" type="text" placeholder="Surname">
+                <input required name="sname" class="form-control g-color-black g-brd-left-none g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-pl-0 g-pr-15 g-py-13" type="text" placeholder="Surname">
               </div>
             </div>
 

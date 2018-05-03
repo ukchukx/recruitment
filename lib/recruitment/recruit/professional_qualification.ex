@@ -6,10 +6,9 @@ defmodule Recruitment.Recruit.ProfessionalQualification do
 
   schema "professional_qualifications" do
     field :city, :string
-    field :classification, :string
     field :country, :string
     field :enddate, :string
-    field :fos, :string
+    field :certificate_title, :string
     field :grade, :string
     field :highest_qual, :string
     field :institution, :string
@@ -18,14 +17,11 @@ defmodule Recruitment.Recruit.ProfessionalQualification do
     field :reg_no, :string
     field :startdate, :string
     belongs_to :recruit, Recruit
-
-    timestamps()
   end
 
   @doc false
   def changeset(professional_qualification, attrs) do
     professional_qualification
-    |> cast(attrs, [:startdate, :enddate, :qualification, :reg_no, :classification, :institution, :city, :country, :level, :grade, :fos, :highest_qual])
-    |> validate_required([:startdate, :enddate, :qualification, :reg_no, :classification, :institution, :city, :country, :level, :grade, :fos, :highest_qual])
+    |> cast(attrs, [:startdate, :enddate, :qualification, :reg_no, :certificate_title, :institution, :city, :country, :level, :grade, :highest_qual])
   end
 end

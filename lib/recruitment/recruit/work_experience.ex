@@ -10,8 +10,6 @@ defmodule Recruitment.Recruit.WorkExperience do
     field :role, :string
     field :startdate, :string
     belongs_to :recruit, Recruit
-
-    timestamps()
   end
 
   @doc false

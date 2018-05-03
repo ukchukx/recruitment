@@ -4,8 +4,6 @@ defmodule Recruitment.Repo.Migrations.CreateCountries do
   def change do
     create table(:countries) do
       add :name, :string
-
-      timestamps()
     end
 
   end

@@ -24,6 +24,7 @@ defmodule RecruitmentWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
+    length: 2_097_152, # 2MB
     json_decoder: Poison
 
   plug Plug.MethodOverride

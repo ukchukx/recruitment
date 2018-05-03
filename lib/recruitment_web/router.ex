@@ -21,8 +21,15 @@ defmodule RecruitmentWeb.Router do
     post "/recruit/", PageController, :login_signup
     get "/recruit/positions", PageController, :positions
     post "/recruit/positions", PageController, :positions_post
-    post "/recruit/registration", PageController, :registration
-    get "/recruit/done", PageController, :positions # change to done
+    get "/recruit/registration", PageController, :registration
+    post "/recruit/registration", PageController, :registration_post
+    get "/recruit/qualifications", PageController, :qualifications
+    post "/recruit/qualifications", PageController, :qualifications_post
+    get "/recruit/experience", PageController, :experience
+    post "/recruit/experience", PageController, :experience_post
+    get "/recruit/attachments", PageController, :attachments
+    post "/recruit/attachments", PageController, :attachments_post
+    get "/recruit/done", PageController, :done
     post "/recruit/logout", PageController, :logout
     get "/recruit/logout", PageController, :logout
     get "/*path", PageController, :index

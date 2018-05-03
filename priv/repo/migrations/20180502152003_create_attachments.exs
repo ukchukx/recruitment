@@ -5,9 +5,8 @@ defmodule Recruitment.Repo.Migrations.CreateAttachments do
     create table(:attachments) do
       add :title, :string
       add :path, :string
+      add :file_type, :string
       add :recruit_id, references(:recruit, on_delete: :nothing)
-
-      timestamps()
     end
 
     create index(:attachments, [:recruit_id])

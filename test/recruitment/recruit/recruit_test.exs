@@ -640,4 +640,134 @@ defmodule Recruitment.RecruitTest do
       assert %Ecto.Changeset{} = Recruit.change_lga(lga)
     end
   end
+
+  describe "positions" do
+    alias Recruitment.Recruit.Position
+
+    @valid_attrs %{short_code: "some short_code", status: 42, title: "some title"}
+    @update_attrs %{short_code: "some updated short_code", status: 43, title: "some updated title"}
+    @invalid_attrs %{short_code: nil, status: nil, title: nil}
+
+    def position_fixture(attrs \\ %{}) do
+      {:ok, position} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Recruit.create_position()
+
+      position
+    end
+
+    test "list_positions/0 returns all positions" do
+      position = position_fixture()
+      assert Recruit.list_positions() == [position]
+    end
+
+    test "get_position!/1 returns the position with given id" do
+      position = position_fixture()
+      assert Recruit.get_position!(position.id) == position
+    end
+
+    test "create_position/1 with valid data creates a position" do
+      assert {:ok, %Position{} = position} = Recruit.create_position(@valid_attrs)
+      assert position.short_code == "some short_code"
+      assert position.status == 42
+      assert position.title == "some title"
+    end
+
+    test "create_position/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Recruit.create_position(@invalid_attrs)
+    end
+
+    test "update_position/2 with valid data updates the position" do
+      position = position_fixture()
+      assert {:ok, position} = Recruit.update_position(position, @update_attrs)
+      assert %Position{} = position
+      assert position.short_code == "some updated short_code"
+      assert position.status == 43
+      assert position.title == "some updated title"
+    end
+
+    test "update_position/2 with invalid data returns error changeset" do
+      position = position_fixture()
+      assert {:error, %Ecto.Changeset{}} = Recruit.update_position(position, @invalid_attrs)
+      assert position == Recruit.get_position!(position.id)
+    end
+
+    test "delete_position/1 deletes the position" do
+      position = position_fixture()
+      assert {:ok, %Position{}} = Recruit.delete_position(position)
+      assert_raise Ecto.NoResultsError, fn -> Recruit.get_position!(position.id) end
+    end
+
+    test "change_position/1 returns a position changeset" do
+      position = position_fixture()
+      assert %Ecto.Changeset{} = Recruit.change_position(position)
+    end
+  end
+
+  describe "sub_positions" do
+    alias Recruitment.Recruit.SubPosition
+
+    @valid_attrs %{hint: "some hint", position_id: 42, status: 42, sub_title: "some sub_title"}
+    @update_attrs %{hint: "some updated hint", position_id: 43, status: 43, sub_title: "some updated sub_title"}
+    @invalid_attrs %{hint: nil, position_id: nil, status: nil, sub_title: nil}
+
+    def sub_position_fixture(attrs \\ %{}) do
+      {:ok, sub_position} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Recruit.create_sub_position()
+
+      sub_position
+    end
+
+    test "list_sub_positions/0 returns all sub_positions" do
+      sub_position = sub_position_fixture()
+      assert Recruit.list_sub_positions() == [sub_position]
+    end
+
+    test "get_sub_position!/1 returns the sub_position with given id" do
+      sub_position = sub_position_fixture()
+      assert Recruit.get_sub_position!(sub_position.id) == sub_position
+    end
+
+    test "create_sub_position/1 with valid data creates a sub_position" do
+      assert {:ok, %SubPosition{} = sub_position} = Recruit.create_sub_position(@valid_attrs)
+      assert sub_position.hint == "some hint"
+      assert sub_position.position_id == 42
+      assert sub_position.status == 42
+      assert sub_position.sub_title == "some sub_title"
+    end
+
+    test "create_sub_position/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Recruit.create_sub_position(@invalid_attrs)
+    end
+
+    test "update_sub_position/2 with valid data updates the sub_position" do
+      sub_position = sub_position_fixture()
+      assert {:ok, sub_position} = Recruit.update_sub_position(sub_position, @update_attrs)
+      assert %SubPosition{} = sub_position
+      assert sub_position.hint == "some updated hint"
+      assert sub_position.position_id == 43
+      assert sub_position.status == 43
+      assert sub_position.sub_title == "some updated sub_title"
+    end
+
+    test "update_sub_position/2 with invalid data returns error changeset" do
+      sub_position = sub_position_fixture()
+      assert {:error, %Ecto.Changeset{}} = Recruit.update_sub_position(sub_position, @invalid_attrs)
+      assert sub_position == Recruit.get_sub_position!(sub_position.id)
+    end
+
+    test "delete_sub_position/1 deletes the sub_position" do
+      sub_position = sub_position_fixture()
+      assert {:ok, %SubPosition{}} = Recruit.delete_sub_position(sub_position)
+      assert_raise Ecto.NoResultsError, fn -> Recruit.get_sub_position!(sub_position.id) end
+    end
+
+    test "change_sub_position/1 returns a sub_position changeset" do
+      sub_position = sub_position_fixture()
+      assert %Ecto.Changeset{} = Recruit.change_sub_position(sub_position)
+    end
+  end
 end

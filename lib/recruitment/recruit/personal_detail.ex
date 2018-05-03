@@ -3,15 +3,14 @@ defmodule Recruitment.Recruit.PersonalDetail do
   import Ecto.Changeset
   alias Recruitment.Recruit.Recruit
 
+  @fields [:title, :mname, :gender, :nationality, :dob, :height, :nin, :phone, :permAddress, :permStreet, :permLga, 
+      :permState, :curAddress, :curStreet, :curLga, :curState, :prefAddress, :stage, :status]
 
   schema "personal_details" do
-    field :accepted, :integer, default: 0
-    field :completed, :integer, default: 0
     field :curAddress, :string
     field :curLga, :string
     field :curState, :string
     field :curStreet, :string
-    field :denied, :integer, default: 0
     field :dob, :string
     field :gender, :string
     field :height, :string
@@ -24,17 +23,15 @@ defmodule Recruitment.Recruit.PersonalDetail do
     field :permStreet, :string
     field :phone, :string
     field :prefAddress, :string
-    field :status, :integer, default: 0
+    field :stage, :integer
+    field :status, :integer
     field :title, :string
-    field :verified, :integer, default: 0
     belongs_to :recruit, Recruit
-
-    timestamps()
   end
 
   @doc false
   def changeset(personal_detail, attrs) do
     personal_detail
-    |> cast(attrs, [:title, :mname, :gender, :nationality, :dob, :height, :nin, :phone, :permAddress, :permStreet, :permLga, :permState, :curAddress, :curStreet, :curLga, :curState, :prefAddress, :completed, :accepted, :denied, :verified, :status])
+    |> cast(attrs, @fields)
   end
 end

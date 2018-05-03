@@ -7,6 +7,7 @@ defmodule Recruitment.Recruit do
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   import Plug.Conn
   alias Recruitment.Repo
+  require Logger
 
   alias Recruitment.Recruit.{
     Recruit,
@@ -17,7 +18,9 @@ defmodule Recruitment.Recruit do
     Attachment,
     WorkExperience,
     ProfessionalQualification,
-    EducationalQualification
+    EducationalQualification,
+    Position,
+    SubPosition
   }
 
 
@@ -54,6 +57,44 @@ defmodule Recruitment.Recruit do
     Repo.all(from r in Recruit, where: r.email > ^email, select: r.email)
     |> length
     |> Kernel.!=(0)
+  end
+
+  def load_chosen_position(id) do
+    SubPosition
+    |> join(:inner, [s], p in Position, s.sub_position_id == p.id)
+    |> where([s, _p], s.sub_position_id == ^id)
+    |> select([s, p], %{id: p.id, 
+      title: p.title, short_code: p.short_code, status: p.status, 
+      sub_position_id: s.sub_position_id, position_id: s.position_id, 
+      sub_title: s.sub_title, hint: s.hint, sstatus: s.status})
+    |> Repo.all
+    |> List.first
+  end
+
+  def set_complete(%Recruit{id: id} = recruit) do
+    PersonalDetail
+    |> join(:inner, [p], r in Recruit, r.id == p.recruit_id)
+    |> join(:inner, [p, _r], l in Lga, p.permState == l.state)
+    |> join(:inner, [_p, r, _l], pos in Position, pos.id == r.position_category)
+    |> join(:inner, [_p, r, _l, _pos], s in SubPosition, s.sub_position_id == r.position_applied_for)
+    |> where([p, _r, _l, _pos, _s], p.recruit_id == ^id)
+    |> select([_p, _r, l, pos, s], [l.state_short_code, pos.short_code, s.sub_position_id])
+    |> limit(1)
+    |> Repo.all
+    |> List.first
+    |> case do
+      [state_short_code, short_code, sub_position_id] ->
+        rand = :rand.uniform() * (100000000 - 10000000) + 10000000 |> trunc
+        attrs = %{
+          reference: "NPS/#{state_short_code}/#{short_code}#{sub_position_id}/#{rand}",
+          completed: 1
+        }
+        update_recruit(current_user, attrs)
+        
+      x -> 
+       Logger.error("Error in set_complete: #{inspect x}") 
+       {:error, :set_complete_failed}
+    end 
   end
 
   def signin_with_email_and_password(conn, email, pass) do
@@ -162,11 +203,11 @@ defmodule Recruitment.Recruit do
   end
 
   def load_educational_qualifications(%Recruit{} = recruit) do
-    Repo.preload(recruit, :educational_qualification)
+    Repo.preload(recruit, :educational_qualifications)
   end
 
   def load_professional_qualifications(%Recruit{} = recruit) do
-    Repo.preload(recruit, :professional_qualification)
+    Repo.preload(recruit, :professional_qualifications)
   end
 
   def load_work_experience(%Recruit{} = recruit) do
@@ -174,7 +215,7 @@ defmodule Recruitment.Recruit do
   end
 
   def load_attachments(%Recruit{} = recruit) do
-    Repo.preload(recruit, :attachment)
+    Repo.preload(recruit, :attachments)
   end
 
   @doc """
@@ -914,5 +955,193 @@ defmodule Recruitment.Recruit do
   """
   def change_lga(%Lga{} = lga) do
     Lga.changeset(lga, %{})
+  end
+
+  @doc """
+  Returns the list of positions.
+
+  ## Examples
+
+      iex> list_positions()
+      [%Position{}, ...]
+
+  """
+  def list_positions do
+    Repo.all(Position)
+  end
+
+  @doc """
+  Gets a single position.
+
+  Raises `Ecto.NoResultsError` if the Position does not exist.
+
+  ## Examples
+
+      iex> get_position!(123)
+      %Position{}
+
+      iex> get_position!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_position!(id), do: Repo.get!(Position, id)
+
+  @doc """
+  Creates a position.
+
+  ## Examples
+
+      iex> create_position(%{field: value})
+      {:ok, %Position{}}
+
+      iex> create_position(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_position(attrs \\ %{}) do
+    %Position{}
+    |> Position.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a position.
+
+  ## Examples
+
+      iex> update_position(position, %{field: new_value})
+      {:ok, %Position{}}
+
+      iex> update_position(position, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_position(%Position{} = position, attrs) do
+    position
+    |> Position.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Position.
+
+  ## Examples
+
+      iex> delete_position(position)
+      {:ok, %Position{}}
+
+      iex> delete_position(position)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_position(%Position{} = position) do
+    Repo.delete(position)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking position changes.
+
+  ## Examples
+
+      iex> change_position(position)
+      %Ecto.Changeset{source: %Position{}}
+
+  """
+  def change_position(%Position{} = position) do
+    Position.changeset(position, %{})
+  end
+
+  @doc """
+  Returns the list of sub_positions.
+
+  ## Examples
+
+      iex> list_sub_positions()
+      [%SubPosition{}, ...]
+
+  """
+  def list_sub_positions do
+    Repo.all(SubPosition)
+  end
+
+  @doc """
+  Gets a single sub_position.
+
+  Raises `Ecto.NoResultsError` if the Sub position does not exist.
+
+  ## Examples
+
+      iex> get_sub_position!(123)
+      %SubPosition{}
+
+      iex> get_sub_position!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_sub_position!(id), do: Repo.get!(SubPosition, id)
+
+  @doc """
+  Creates a sub_position.
+
+  ## Examples
+
+      iex> create_sub_position(%{field: value})
+      {:ok, %SubPosition{}}
+
+      iex> create_sub_position(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_sub_position(attrs \\ %{}) do
+    %SubPosition{}
+    |> SubPosition.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a sub_position.
+
+  ## Examples
+
+      iex> update_sub_position(sub_position, %{field: new_value})
+      {:ok, %SubPosition{}}
+
+      iex> update_sub_position(sub_position, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_sub_position(%SubPosition{} = sub_position, attrs) do
+    sub_position
+    |> SubPosition.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a SubPosition.
+
+  ## Examples
+
+      iex> delete_sub_position(sub_position)
+      {:ok, %SubPosition{}}
+
+      iex> delete_sub_position(sub_position)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_sub_position(%SubPosition{} = sub_position) do
+    Repo.delete(sub_position)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking sub_position changes.
+
+  ## Examples
+
+      iex> change_sub_position(sub_position)
+      %Ecto.Changeset{source: %SubPosition{}}
+
+  """
+  def change_sub_position(%SubPosition{} = sub_position) do
+    SubPosition.changeset(sub_position, %{})
   end
 end
