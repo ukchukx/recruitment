@@ -1,0 +1,9 @@
+version: '2'
+services:
+  recruitment:
+    image: recruitment
+    container_name: recruitment
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - "${PWD}/logs:/app/logs"

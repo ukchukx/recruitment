@@ -1,5 +1,6 @@
 # App artifacts
 /_build
+!_build/prod/rel/recruitment/releases/1.0.0/recruitment.tar.gz
 /db
 /deps
 /*.ez
