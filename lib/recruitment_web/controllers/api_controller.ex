@@ -21,13 +21,15 @@ defmodule RecruitmentWeb.ApiController do
   end
 
   def delete_result(conn, %{"id" => id, "user_id" => user_id, "table" => table}) do
+    user_id = user_id |> String.trim |> String.to_integer
     case table do
       "professional" ->
         case Recruit.get_professional_qualification!(id) do
           %{recruit_id: ^user_id} = prof -> 
             Recruit.delete_professional_qualification(prof)
             send_resp(conn, :no_content, "")
-          _ -> send_resp(conn, :forbidden, "not owner")
+          _->
+            send_resp(conn, :forbidden, "not owner")
         end
         
       "qualification" ->

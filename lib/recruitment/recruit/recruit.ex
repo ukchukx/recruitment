@@ -100,10 +100,10 @@ defmodule Recruitment.Recruit do
 
   def get_all_related_tables do
     %{
-      type_of_degrees: (from a in AttachmentList, order_by: a.degree, where: a.status == 1)
+      type_of_degree: (from a in AttachmentList, order_by: a.degree, where: a.status == 1)
         |> Repo.all
         |> Enum.map(&as_map/1),
-      classification: (from a in ResultClassification, where: a.status == 1)
+      classifications: (from a in ResultClassification, where: a.status == 1)
         |> Repo.all
         |> Enum.map(&as_map/1),
       countries: list_countries() |> Enum.map(&as_map/1)   
@@ -186,6 +186,10 @@ defmodule Recruitment.Recruit do
   end
 
   def as_map(%Recruit{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :attachments, :personal_detail, :educational_qualifications, :professional_qualifications, :work_experience])
+  def as_map(%EducationalQualification{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :recruit])
+  def as_map(%ProfessionalQualification{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :recruit])
+  def as_map(%WorkExperience{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :recruit])
+  def as_map(%Attachment{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :recruit])
   def as_map(struct), do: struct |> Map.from_struct |> Map.delete(:__meta__)
 
   def signin_with_email_and_password(conn, email, pass) do

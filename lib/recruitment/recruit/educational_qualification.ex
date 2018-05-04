@@ -8,7 +8,7 @@ defmodule Recruitment.Recruit.EducationalQualification do
     field :city, :string
     field :classification, :string
     field :country, :string
-    field :course_of_study, :string
+    field :course_of_study, :string, default: ""
     field :enddate, :string
     field :institution, :string
     field :qualification, :string

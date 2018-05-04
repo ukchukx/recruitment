@@ -305,6 +305,24 @@ defmodule RecruitmentWeb.PageController do
         Recruit.create_professional_qualification(params)
         redirect conn, to: page_path(conn, :qualifications) 
       "educational" ->
+        params =
+          case params["course_of_study"] do
+            nil -> 
+              Map.put(params, "course_of_study", params["type"])
+            "" -> 
+              Map.put(params, "course_of_study", params["type"])
+            _ -> params  
+          end
+
+        params =
+          case params["qualification"] do
+            nil -> 
+              Map.put(params, "qualification", params["classification"])
+            "" -> 
+              Map.put(params, "qualification", params["classification"])
+            _ -> params  
+          end
+
         Recruit.create_educational_qualification(params)
         redirect conn, to: page_path(conn, :qualifications) 
       "delete_professional" ->
@@ -464,6 +482,8 @@ defmodule RecruitmentWeb.PageController do
   @file_store "/var/www/html/nps/prison_cms_files"
 
   def attachments_post(%{assigns: %{current_user: current_user}} = conn, %{"form" => form} = params) do
+    params = Map.put(params, "recruit_id", current_user.id)
+    
     case form do
       "next" ->
         case Recruit.set_complete(current_user) do

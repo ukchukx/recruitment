@@ -11,7 +11,7 @@
     //////////FETCH ALL RELATED TABLES
    $http.get(datagrab.completeUrlLocation+"recruit_api/get_all_related_tables")
    .then(function(response) {
-    $scope.degrees = angular.fromJson(response.data.type_of_degree); 
+    $scope.degrees = angular.fromJson(response.data.type_of_degree);
     $scope.classifications = angular.fromJson(response.data.classifications);
     $scope.countries = angular.fromJson(response.data.countries);
    },function errorCallback(response) {
@@ -95,7 +95,11 @@
       
 
     $scope.add_educational_qualification = function(){
-    $('#edu_qualification_Window_Modal').appendTo("body").modal('show');    
+    // $('#edu_qualification_Window_Modal').appendTo("body").modal('show'); 
+      $('#edu_qualification_Window_Modal').removeClass('fade').addClass('show'); 
+    }
+    $scope.close_educational_qualification = function(){
+      $('#edu_qualification_Window_Modal').removeClass('show').addClass('fade'); 
     }
 
     $scope.preview_details = function(index){
@@ -114,7 +118,11 @@
     }
 
     $scope.add_professional_qualification = function(){
-    $('#pro_qualification_Window_Modal').appendTo("body").modal('show');    
+    // $('#pro_qualification_Window_Modal').appendTo("body").modal('show');   
+      $('#pro_qualification_Window_Modal').removeClass('fade').addClass('show');  
+    }
+    $scope.close_professional_qualification = function(){
+      $('#pro_qualification_Window_Modal').removeClass('show').addClass('fade'); 
     }
     
 

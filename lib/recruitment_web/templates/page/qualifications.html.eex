@@ -60,167 +60,172 @@
     
 <!-- MESSAGE MODAL WINDOW -->
 <div ng-controller="recruitRegistrationController as recruitCtrll" class="modal fade" id="edu_qualification_Window_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content col-lg-12" style="float:none;margin:auto;padding:0 10px">
-      
-        <div class="modal-header" style="text-align: center !important">
-        <button type="button" class="close" style="" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br/>
-        <h5 class="modal-title" id="" style="text-align:center;font-weight: bold">Add Educational Qualification</h5>
-      </div>
-      
-       <div class="modal-body" style="padding:5px;text-align:center">
-          <form action="" method="post">
-            <input type="hidden" name="_csrf_token" value="<%= csrf_token(@conn) %>">
-          <input type="hidden" name="form" value="educational">
-          <div class="row mb-3">
-            <div class="col-md-6 col-sm-12">
-              <label style="font-weight: bold">From</label>
-              <select name="startdate" required="" class="form-control">
-                <%= for year <- years_from(1978) do %>
-                <option value="<%= year %>"><%= year %></option>
-                <% end %>
-              </select>
-              
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center" role="document">
+      <div class="modal-content col-lg-12" style="float:none;margin:auto;padding:0 10px">
+        
+          <div class="modal-header" style="text-align: center !important">
+          <button ng-click="close_educational_qualification()" type="button" class="close" style="" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br/>
+          <h5 class="modal-title" id="" style="text-align:center;font-weight: bold">Add Educational Qualification</h5>
+        </div>
+        
+         <div class="modal-body" style="padding:5px;text-align:center">
+            <form action="" method="post">
+              <input type="hidden" name="_csrf_token" value="<%= csrf_token(@conn) %>">
+            <input type="hidden" name="form" value="educational">
+            <div class="row mb-3">
+              <div class="col-md-6 col-sm-12">
+                <label style="font-weight: bold">From</label>
+                <select name="startdate" required="" class="form-control">
+                  <%= for year <- years_from(1978) do %>
+                  <option value="<%= year %>"><%= year %></option>
+                  <% end %>
+                </select>
+                
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label style="font-weight: bold" >To</label>
+                <select name="enddate" required="" class="form-control">
+                  <%= for year <- years_from(1978) do %>
+                  <option value="<%= year %>"><%= year %></option>
+                  <% end %> 
+                </select>
+              </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-              <label style="font-weight: bold" >To</label>
-              <select name="enddate" required="" class="form-control">
-                <%= for year <- years_from(1978) do %>
-                <option value="<%= year %>"><%= year %></option>
-                <% end %> 
-              </select>
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col-md-6 col-sm-12">
-              <label style="font-weight: bold">Type</label>
-              <select name="type" required="" class="form-control" ng-model="degree" ng-init="degree='BSc'">
-              <option value="{{degree.degree}}" ng-repeat="degree in degrees">{{degree.degree}}</option>
-              <option value="Others">Others</option>
-              </select>
-
-            </div>
-            <div class="col-md-6 col-sm-12">            
-            <label style="font-weight: bold">Grade</label>
-            <select name="classification" required="" class="form-control">
-            <option value="{{classification.classification}}" ng-repeat="classification in classifications">{{classification.classification}}</option>
-
-            </select>
-                          
-            </div>
-          </div>
 
             <div class="row mb-3">
-            <div class="col-md-12">
-              <label style="font-weight: bold">Educational Institution/School</label>
-              <input type="text" name="institution" required class="form-control">
-            </div>
-          </div>
+              <div class="col-md-6 col-sm-12">
+                <label style="font-weight: bold">Type</label>
+                <select name="type" required="" class="form-control" ng-model="degree" ng-init="degree='BSc'">
+                <option value="{{degree.degree}}" ng-repeat="degree in degrees">{{degree.degree}}</option>
+                <option value="Others">Others</option>
+                </select>
 
-          <div class="row mb-3" ng-show="degree!='First School Leaving Certificate' && degree!='SSCE(WAEC)' && degree!='SSCE(NECO)'">
-            <div class="col-md-12">
-              <label style="font-weight: bold">Course of Study</label>
-              <input type="text" name="course_of_study" class="form-control">
-            </div>
-          </div>
+              </div>
+              <div class="col-md-6 col-sm-12">            
+              <label style="font-weight: bold">Grade</label>
+              <select name="classification" required="" class="form-control">
+              <option value="{{classification.classification}}" ng-repeat="classification in classifications">{{classification.classification}}</option>
 
-          <div class="row mb-3">
-            <div class="col-sm-12 col-md-6">
-              <label style="font-weight: bold">City</label>
-              <input type="text" name="city" class="form-control">
-            </div>
-            <div class="col-sm-12 col-md-6">
-              <label style="font-weight: bold">Country</label>
-              <select required name="country" class="form-control" ng-model="country" ng-init="country='Nigeria'">
-              <option value="{{country.name}}" ng-repeat="country in countries">{{country.name}}</option>
               </select>
+                            
+              </div>
             </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-md-12 text-center">
-              <button class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="submit">Save</button>
+
+              <div class="row mb-3">
+              <div class="col-md-12">
+                <label style="font-weight: bold">Educational Institution/School</label>
+                <input type="text" name="institution" required class="form-control">
+              </div>
             </div>
-          </div> 
-        </form>
-       </div>
+
+            <div class="row mb-3" ng-show="degree!='First School Leaving Certificate' && degree!='SSCE(WAEC)' && degree!='SSCE(NECO)'">
+              <div class="col-md-12">
+                <label style="font-weight: bold">Course of Study</label>
+                <input type="text" name="course_of_study" class="form-control">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-sm-12 col-md-6">
+                <label style="font-weight: bold">City</label>
+                <input type="text" name="city" class="form-control">
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <label style="font-weight: bold">Country</label>
+                <select required name="country" class="form-control" ng-model="country" ng-init="country='Nigeria'">
+                <option value="{{country.name}}" ng-repeat="country in countries">{{country.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-12 text-center">
+                <button class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="submit">Save</button>
+              </div>
+            </div> 
+          </form>
+         </div>
+    </div>
   </div>
-</div>
+    
+  </div>
 </div>
 
 
     
 <!-- MESSAGE MODAL WINDOW -->
 <div ng-controller="recruitRegistrationController as recruitCtrll" class="modal fade" id="pro_qualification_Window_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content col-lg-12" style="float:none;margin:auto;padding:0 10px">
-      
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h5 class="modal-title" id="" style="text-align:center;font-weight: bold">Add Professional Qualifications/Certifications </h5>
-      </div>
-      
-       <div class="modal-body" style="padding:5px;text-align:center">
-          <form action="" method="post">
-            <input type="hidden" name="_csrf_token" value="<%= csrf_token(@conn) %>">
-          <input type="hidden" name="form" value="professional">
-          <div class="row mb-3">
-            <div class="col-md-6 col-sm-12">
-              <label style="font-weight: bold">From</label>
-              <select name="startdate" required="" class="form-control">
-                <%= for year <- years_from(1978) do %>
-                <option value="<%= year %>"><%= year %></option>
-                <% end %>
-              </select>
-              
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center" role="document">
+      <div class="modal-content col-lg-12" style="float:none;margin:auto;padding:0 10px">
+        
+          <div class="modal-header">
+          <button ng-click="close_professional_qualification()" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h5 class="modal-title" id="" style="text-align:center;font-weight: bold">Add Professional Qualifications/Certifications </h5>
+        </div>
+        
+         <div class="modal-body" style="padding:5px;text-align:center">
+            <form action="" method="post">
+              <input type="hidden" name="_csrf_token" value="<%= csrf_token(@conn) %>">
+            <input type="hidden" name="form" value="professional">
+            <div class="row mb-3">
+              <div class="col-md-6 col-sm-12">
+                <label style="font-weight: bold">From</label>
+                <select name="startdate" required="" class="form-control">
+                  <%= for year <- years_from(1978) do %>
+                  <option value="<%= year %>"><%= year %></option>
+                  <% end %>
+                </select>
+                
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label style="font-weight: bold">To</label>
+                <select name="enddate" required="" class="form-control">
+                  <%= for year <- years_from(1978) do %>
+                  <option value="<%= year %>"><%= year %></option>
+                  <% end %>
+                </select>
+              </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-              <label style="font-weight: bold">To</label>
-              <select name="enddate" required="" class="form-control">
-                <%= for year <- years_from(1978) do %>
-                <option value="<%= year %>"><%= year %></option>
-                <% end %>
-              </select>
-            </div>
-          </div>
 
-          <div class="row mb-3">
-            <div class="col-md-12">
-              <label style="font-weight: bold">Institution</label>
-              <input type="text" name="institution" required class="form-control">
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label style="font-weight: bold">Institution</label>
+                <input type="text" name="institution" required class="form-control">
+              </div>
             </div>
-          </div>
 
-           <div class="row mb-3">
-            <div class="col-md-12">
-              <label style="font-weight: bold">Certification Title</label>
-              <input type="text" name="certificate_title" class="form-control">
+             <div class="row mb-3">
+              <div class="col-md-12">
+                <label style="font-weight: bold">Certification Title</label>
+                <input type="text" name="certificate_title" class="form-control">
+              </div>
             </div>
-          </div>
 
 
-          <div class="row mb-3">
-            <div class="col-md-6 col-sm-12">
-              <label style="font-weight: bold">City</label>
-              <input type="text" name="city" required class="form-control">
+            <div class="row mb-3">
+              <div class="col-md-6 col-sm-12">
+                <label style="font-weight: bold">City</label>
+                <input type="text" name="city" required class="form-control">
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label style="font-weight: bold">Country</label>
+                <select required name="country" class="form-control" ng-model="country" ng-init="country='Nigeria'">
+                <option value="{{country.name}}" ng-repeat="country in countries">{{country.name}}</option>
+                </select>
+              </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-              <label style="font-weight: bold">Country</label>
-              <select required name="country" class="form-control" ng-model="country" ng-init="country='Nigeria'">
-              <option value="{{country.name}}" ng-repeat="country in countries">{{country.name}}</option>
-              </select>
+            
+            <div class="row mb-3">
+              <div class="col-md-12 text-center">
+                <button class="btn btn-md btn-block u-btn-primary rounded" type="submit">Save</button>
+              </div>
             </div>
-          </div>
-          
-          <div class="row mb-3">
-            <div class="col-md-12 text-center">
-              <button class="btn btn-md btn-block u-btn-primary rounded" type="submit">Save</button>
-            </div>
-          </div>
-        </form>
-       </div>
+          </form>
+         </div>
+    </div>
   </div>
-</div>
+  </div>
 </div>
   </div>
   
