@@ -383,11 +383,11 @@ defmodule RecruitmentWeb.PageController do
       "back" ->
         redirect conn, to: page_path(conn, :qualifications) 
       "experience" ->
-        Recruit.create_professional_qualification(params)
+        Recruit.create_work_experience(params)
         redirect conn, to: page_path(conn, :experience)
       "delete_experience" ->
         current_user = Recruit.load_work_experience(current_user)
-        id = params["id"]
+        id = params["id"] |> String.trim |> String.to_integer
         
         current_user.work_experience
         |> Enum.find(fn 
@@ -483,7 +483,7 @@ defmodule RecruitmentWeb.PageController do
 
   def attachments_post(%{assigns: %{current_user: current_user}} = conn, %{"form" => form} = params) do
     params = Map.put(params, "recruit_id", current_user.id)
-    
+
     case form do
       "next" ->
         case Recruit.set_complete(current_user) do
@@ -533,7 +533,7 @@ defmodule RecruitmentWeb.PageController do
 
       "delete_attachment" ->
         current_user = Recruit.load_attachments(current_user)
-        id = params["id"]
+        id = params["id"] |> String.trim |> String.to_integer
         
         current_user.attachments
         |> Enum.find(fn 
