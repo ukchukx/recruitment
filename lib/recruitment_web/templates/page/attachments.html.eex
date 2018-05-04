@@ -132,7 +132,7 @@
           </tr>
         </thead>
         <tbody>
-          <%= for {attachment, index} <- Enum.with_index(@attachments) do %>
+          <%= for {attachment, index} <- Enum.with_index(@current_user.attachments) do %>
           <tr style="padding:5px">
           <td><%= index + 1 %></td>
           <td><img src="/images/<%= attachment.file_type %>_icon.png" style="width:25px" /></td> 
@@ -194,7 +194,7 @@
       
        <div class="modal-body" style="padding:;" ng-init="get_applicants_other_details(user_details.recruit_id)">
                    <div class="loader">
-                   <img src="http://{{dirlocation}}public/images/loader.gif" style="width:50px">    
+                   <img src="/images/loader.gif" style="width:50px">    
                    </div>
                             <div class="" style=""> 
                             <div style="text-align:center">   

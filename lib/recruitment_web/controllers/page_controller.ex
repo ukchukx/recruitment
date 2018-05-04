@@ -141,6 +141,7 @@ defmodule RecruitmentWeb.PageController do
       paf -> 
         case Recruit.update_recruit(current_user, %{
           application_stage: String.trim(params["application_stage"]),
+          position_category: String.trim(params["position_category"]),
           position_applied_for: paf}) do
           {:ok, _} -> :ok    
           {:error, err} ->
@@ -430,10 +431,11 @@ defmodule RecruitmentWeb.PageController do
       |> Map.put(:cert_of_identity, false)
       |> Map.put(:birth_cert, false)
       |> Map.put(:fslc, false)
+      |> Map.put(:err_msg, nil)
 
     assigns =
       current_user.attachments
-      Enum.reduce(assigns, fn (%{title: title}, acc) ->  
+      |> Enum.reduce(assigns, fn (%{title: title}, acc) ->  
         case title do
           "Passport Photograph" ->
             %{acc | passport_uploaded: true}
@@ -473,12 +475,12 @@ defmodule RecruitmentWeb.PageController do
   end
 
   @acceptable_types [
-    'application/pdf',
-    'application/msword', # .doc
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document', # .docx
-    'image/jpeg',
-    'image/jpg',
-    'image/png']
+    "application/pdf",
+    "application/msword", # .doc
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document", # .docx
+    "image/jpeg",
+    "image/jpg",
+    "image/png"]
   @file_store "/var/www/html/nps/prison_cms_files"
 
   def attachments_post(%{assigns: %{current_user: current_user}} = conn, %{"form" => form} = params) do
@@ -537,7 +539,7 @@ defmodule RecruitmentWeb.PageController do
         
         current_user.attachments
         |> Enum.find(fn 
-          %{id: ^id} -> true  
+          %{id: ^id} -> true
           _ -> false  
           end)
         |> case do
@@ -549,9 +551,8 @@ defmodule RecruitmentWeb.PageController do
             end
 
             Recruit.delete_attachment(att)
+            redirect conn, to: page_path(conn, :attachments)
         end
-
-        render conn, "attachments.html", get_attachment_assigns(current_user)
     end
   end
 
