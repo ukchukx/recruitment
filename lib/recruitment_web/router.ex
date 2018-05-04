@@ -21,6 +21,7 @@ defmodule RecruitmentWeb.Router do
     get "/get_positions", ApiController, :get_positions
     get "/get_qualifications", ApiController, :get_qualifications
     get "/get_applicant_details", ApiController, :get_applicant_details
+    get "/get_applicants_other_details", ApiController, :get_applicants_other_details
     get "/delete_result", ApiController, :delete_result
   end
 
@@ -41,8 +42,11 @@ defmodule RecruitmentWeb.Router do
     post "/recruit/attachments", PageController, :attachments_post
     get "/recruit/done", PageController, :done
     get "/recruit/info", PageController, :info
+    get "/recruit/print_ref", PageController, :print_ref
+    get "/recruit/print_referee", PageController, :print_referee
     post "/recruit/logout", PageController, :logout
     get "/recruit/logout", PageController, :logout
+    get "/prison_cms_files/:file", PageController, :get_file
     get "/*path", PageController, :index
   end
 

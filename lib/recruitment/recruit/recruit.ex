@@ -68,8 +68,8 @@ defmodule Recruitment.Recruit do
       title: p.title, short_code: p.short_code, status: p.status, 
       sub_position_id: s.sub_position_id, position_id: s.position_id, 
       sub_title: s.sub_title, hint: s.hint, sstatus: s.status})
-    |> Repo.all
-    |> List.first
+    |> limit(1)
+    |> Repo.one
   end
 
   def set_complete(%Recruit{id: id} = recruit) do
@@ -81,8 +81,7 @@ defmodule Recruitment.Recruit do
     |> where([p, _r, _l, _pos, _s], p.recruit_id == ^id)
     |> select([_p, _r, l, pos, s], [l.state_short_code, pos.short_code, s.sub_position_id])
     |> limit(1)
-    |> Repo.all
-    |> List.first
+    |> Repo.one
     |> case do
       [state_short_code, short_code, sub_position_id] ->
         rand = :rand.uniform() * (100000000 - 10000000) + 10000000 |> trunc
@@ -130,6 +129,30 @@ defmodule Recruitment.Recruit do
       professionals: (from a in ProfessionalQualification, where: a.recruit_id == ^id)
         |> Repo.all
         |> Enum.map(&as_map/1)
+    }
+  end
+
+  def get_applicant_photo(id) do
+    from(a in Attachment, where: a.title == "Passport Photograph" and a.recruit_id == ^id)
+    |> limit(1)
+    |> Repo.one
+    |> as_map
+  end
+
+  def get_applicants_other_details(id) do
+    %{
+      educational_qualifications: (from a in EducationalQualification, where: a.recruit_id == ^id)
+        |> Repo.all
+        |> Enum.map(&as_map/1),
+      professional_qualifications: (from a in ProfessionalQualification, where: a.recruit_id == ^id)
+        |> Repo.all
+        |> Enum.map(&as_map/1),
+      attachments: (from a in Attachment, where: a.recruit_id == ^id)
+        |> Repo.all
+        |> Enum.map(&as_map/1),
+      work_experience: (from a in WorkExperience, where: a.recruit_id == ^id)
+        |> Repo.all
+        |> Enum.map(&as_map/1)  
     }
   end
 
@@ -181,8 +204,7 @@ defmodule Recruitment.Recruit do
       title: pos.title,
       })
     |> limit(1)
-    |> Repo.all
-    |> List.first
+    |> Repo.one
   end
 
   def as_map(%Recruit{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :attachments, :personal_detail, :educational_qualifications, :professional_qualifications, :work_experience])

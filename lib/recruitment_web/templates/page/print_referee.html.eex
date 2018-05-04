@@ -1,0 +1,95 @@
+    <div class="row justify-content-center align-items-center no-gutters col-lg-12" style="margin:0 auto;float:none; no-repeat center;">
+      
+        <div class="" style="padding:5 0 !important">
+            
+          <div style="text-align:center"><img src="/public/images/badge.png'" style="margin:0 auto;width:100px"/></div>
+
+          <h4 style="text-align:center;font-weight: bold">NIGERIAN PRISONS SERVICE</h4>
+          <h5 style="text-align:center;font-weight: bold"><span style="color:#A2CD6A">Reference:</span>
+                        <%= @details.reference %> <br/>
+                        <img src="/prison_cms_files/<%= @passport.path %>" style="width:15%;margin:10px auto;float:none;display:none"></h5>
+        <div class="col-md-5" style="margin:0 auto;float:none">
+          <h5 style="text-align:center;font-weight: bold;margin-top:10px;color:#000;padding:10px;background:#000;color:#fff">REFEREE FORM</h5>
+      </div>
+
+          <p style="font-weight: bold">This recruitment exercise requires that a candidate seeking appointment must produce two (2) credible, responsible and
+acceptable persons as referee’s. If you are willing to stand as referee for this applicant, kindly complete this form in your own
+handwriting.</p>
+<p>
+Please Note that it is very dangerous to stand as referee for persons whom you do not know well. Acceptable Referees Include:<br/>
+<strong>Traditional Rulers, Magistrates, Local Government Chairman, Secretary to State/Local Governments, Heads of Educational
+Institutions attended (Principals, Rectors, Provosts and Vice Chancellors), Career Civil Servants not below the Rank of Grade Level
+12, Nigerian Prisons Officer not below the rank of CSP or a Paramilitary or Military officers of equivalent Rank </strong></p>
+        
+          <div class="row">
+          <div class="col-md-12 pull-left" style="text-align: justify;">
+            <h5 style="text-align: center;font-weight: bold;color:#000;text-decoration: underline;">REFEREE A (Please attached Photocopy of official ID card)</h5>
+            <ul style="list-style: none;margin:0;padding:0;line-height: 25px">
+                <li>I, .......................................................................................................................................................................... </li>
+                <li>of Home-Address ....................................................................................................................................</li>
+                <li>and Office Address ..........................................................................................................................</li>
+                <li>stand as a referee to <strong><%= "#{@details.sname} #{@details.fname} #{@details.mname}" %></strong>  who is being considered for recruitment into the Nigerian
+Prisons Service. </li>
+                <li>My phone number is: ...............................................................................</li>
+                <li>
+                    <div style="width:400px;float:left">
+                That I irrevocably and unconditionally guarantee to indemnify the Nigerian Prisons Service
+                in the event of any unpleasant development arising from the candidate’s action and/or
+                inaction before, during and after the recruitment exercise.
+                I also promise to produce him/her any time he/she is needed for any reason of
+                Security/National Interest. This guarantee shall be governed by the laws of the Federal
+                Republic of Nigeria.</div>
+                
+      <div style="height:180px;width:180px;padding:5px;border:1px dashed #000;float:right;margin-left:10px;text-align:center">
+        <h5 style="margin-top:30px">REFEREE’S PASSPORT PHOTOGRAPH</h5>
+      </div>   
+                </li>
+                <li style="clear:both;padding-top:36px">Name ..........................................................................................Signature/Date...................................................</li>
+            </ul>
+
+      </div>
+      
+</div>
+<hr>
+          <div class="row" style="margin-top:200px">
+          <div class="col-md-12 pull-left" style="text-align: justify;padding-bottom:20px">
+            <h5 style="text-align: center;font-weight: bold;color:#000;text-decoration: underline;">REFEREE B (Please attached Photocopy of official ID card)</h5>
+            <ul style="list-style: none;margin:0;padding:0;line-height: 25px">
+                <li>I, .......................................................................................................................................................................... </li>
+                <li>of Home-Address ....................................................................................................................................</li>
+                <li>and Office Address ..........................................................................................................................</li>
+                <li>stand as a referee to <strong><%= "#{@details.sname} #{@details.fname} #{@details.mname}" %></strong>  who is being considered for recruitment into the Nigerian
+Prisons Service. </li>
+                <li>My phone number is: ...............................................................................</li>
+                <li>
+                    <div style="width:400px;float:left">
+                That I irrevocably and unconditionally guarantee to indemnify the Nigerian Prisons Service
+                in the event of any unpleasant development arising from the candidate’s action and/or
+                inaction before, during and after the recruitment exercise.
+                I also promise to produce him/her any time he/she is needed for any reason of
+                Security/National Interest. This guarantee shall be governed by the laws of the Federal
+                Republic of Nigeria.</div>
+                
+      <div style="height:180px;width:180px;padding:5px;border:1px dashed #000;float:right;margin-left:10px;text-align:center">
+        <h5 style="margin-top:30px">REFEREE’S PASSPORT PHOTOGRAPH</h5>
+      </div>   
+                </li>
+                <li style="clear:both;padding-top:36px">Name ..........................................................................................Signature/Date...................................................</li>
+            </ul>
+
+      </div>
+      
+</div>
+      </div>
+      
+
+
+      
+  </div>
+
+  <script>
+  setTimeout(function(){ 
+    window.print();window.close(); 
+    
+  }, 10000);
+  </script>

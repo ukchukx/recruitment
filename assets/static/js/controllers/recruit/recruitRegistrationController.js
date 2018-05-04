@@ -34,7 +34,7 @@
     $scope.get_applicants_other_details = function(id){
     //////////FETCH APPLICANTS OTHER DETAILS 
     if(id){
-   $http.get(datagrab.completeUrlLocation+"hr_api/get_applicants_other_details?id="+id)
+   $http.get(datagrab.completeUrlLocation+"recruit_api/get_applicants_other_details?id="+id)
    .then(function(response) {
    $('.loader').hide(); 
    $scope.applicants_educational_details = angular.fromJson(response.data.educational_qualifications);

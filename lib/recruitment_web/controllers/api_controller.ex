@@ -20,6 +20,10 @@ defmodule RecruitmentWeb.ApiController do
     render_result(conn, Recruit.get_applicant_details(id))
   end
 
+  def get_applicants_other_details(conn, %{"id" => id}) do
+    render_result(conn, Recruit.get_applicants_other_details(id))
+  end
+
   def delete_result(conn, %{"id" => id, "user_id" => user_id, "table" => table}) do
     user_id = user_id |> String.trim |> String.to_integer
     case table do

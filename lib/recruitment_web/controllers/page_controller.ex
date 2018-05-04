@@ -12,7 +12,7 @@ defmodule RecruitmentWeb.PageController do
     signupErrorMessage: nil
   }
 
-  plug RecruitmentWeb.Plug.EnsureAuthenticated when action not in [:index, :login_signup, :logout]
+  plug RecruitmentWeb.Plug.EnsureAuthenticated when action not in [:index, :login_signup, :logout, :print_ref, :print_referee]
 
   def index(conn, _) do
     case conn.assigns[:current_user] do
@@ -557,8 +557,6 @@ defmodule RecruitmentWeb.PageController do
   end
 
   def done(%{assigns: %{current_user: current_user}} = conn, _params) do
-    conn = Recruit.signout(conn)
-
     js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
     assigns = 
       %{@base_assigns | js: js}
@@ -566,5 +564,58 @@ defmodule RecruitmentWeb.PageController do
       |> Map.put(:home, page_path(conn, :index))
 
     render conn, "done.html", assigns
+  end
+
+  def print_ref(%{assigns: %{current_user: %{id: id}}} = conn, params) do
+    params_id = params["id"] |> String.trim |> String.to_integer
+    case params_id do
+      ^id ->
+        js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+        assigns = 
+          %{@base_assigns | js: js}
+          |> Map.put(:details, Recruit.get_applicant_details(id))
+          |> Map.put(:passport, Recruit.get_applicant_photo(id))
+
+        render conn, "print_ref.html", assigns
+
+      _ -> 
+        send_resp(conn, :ok, "INVALID URL")
+    end
+  end
+
+  def print_referee(%{assigns: %{current_user: %{id: id}}} = conn, params) do
+    params_id = params["id"] |> String.trim |> String.to_integer
+    case params_id do
+      ^id ->
+        js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+        assigns = 
+          %{@base_assigns | js: js}
+          |> Map.put(:details, Recruit.get_applicant_details(id))
+          |> Map.put(:passport, Recruit.get_applicant_photo(id))
+
+        render conn, "print_referee.html", assigns
+
+      _ -> 
+        send_resp(conn, :ok, "INVALID URL")
+    end
+  end
+
+  def get_file(conn, %{"file" => file}) do
+    conn
+    |> put_resp_content_type(mime_type(file))
+    |> put_resp_header("content-disposition", "attachment; filename=#{file}")
+    |> send_file(200, "#{@file_store}/#{file}")
+  end
+
+  defp mime_type(file) do
+    case file |> String.split(".", trim: true) |> List.last do
+      "jpg" -> "image/jpg"
+      "jpeg" -> "image/jpeg"
+      "png" -> "image/png"
+      "pdf" -> "application/pdf"
+      "doc" -> "application/msword"
+      "docx" -> "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      x -> x
+    end
   end
 end
