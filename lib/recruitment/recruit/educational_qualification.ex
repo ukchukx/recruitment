@@ -20,6 +20,6 @@ defmodule Recruitment.Recruit.EducationalQualification do
   @doc false
   def changeset(educational_qualification, attrs) do
     educational_qualification
-    |> cast(attrs, [:startdate, :enddate, :course_of_study, :qualification, :type, :classification, :institution, :city, :country])
+    |> cast(attrs, [:startdate, :enddate, :course_of_study, :qualification, :type, :classification, :institution, :city, :country, :recruit_id])
   end
 end

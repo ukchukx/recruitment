@@ -15,6 +15,6 @@ defmodule Recruitment.Recruit.WorkExperience do
   @doc false
   def changeset(work_experience, attrs) do
     work_experience
-    |> cast(attrs, [:startdate, :enddate, :role, :organization])
+    |> cast(attrs, [:startdate, :enddate, :role, :organization, :recruit_id])
   end
 end

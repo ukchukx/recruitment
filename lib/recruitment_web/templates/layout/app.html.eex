@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script id="tinyhippos-injected">
-    if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }
-  </script>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,31 +10,32 @@
 
     <title>The Nigerian Prisons Service</title>
 
-    <link rel="icon" type="image/png" href="<%= static_path(@conn, "/images/favicon.png") %>">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <!-- <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/simple-line-icons.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/style.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/style(1).css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/style(2).css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/animate.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/slick.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/typed.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/hs.megamenu.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/hamburgers.min.css") %>">
+  <link rel="stylesheet" href="/css/simple-line-icons.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style(1).css">
+  <link rel="stylesheet" href="/css/style(2).css">
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/slick.css">
+  <link rel="stylesheet" href="/css/typed.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/hs.megamenu.css">
+  <link rel="stylesheet" href="/css/hamburgers.min.css">
 
   <!-- CSS Unify -->
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/unify-core.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/unify-components.css") %>">
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/unify-globals.css") %>">
+  <link rel="stylesheet" href="/css/unify-core.css">
+  <link rel="stylesheet" href="/css/unify-components.css">
+  <link rel="stylesheet" href="/css/unify-globals.css">
 
   <!-- CSS Customization -->
-  <link rel="stylesheet" href="<%= static_path(@conn, "/css/custom.css") %>">
+  <link rel="stylesheet" href="/css/custom.css">
 
   <!-- jQuery 2.2.3 -->
-  <script src="<%= static_path(@conn, "/plugins/jQuery/jquery-2.2.3.min.js") %>"></script>
-  <script src="<%= static_path(@conn, "/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js") %>"></script>
-  <link rel="stylesheet" href="<%= static_path(@conn, "/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css") %>">
+  <script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+  <script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css">
 
 <script>
 
@@ -46,6 +44,9 @@
     $(".datepicker" ).datepicker();
    
   });
+  </script>
+  <script id="tinyhippos-injected">
+    if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }
   </script>
 
   <style>
@@ -75,7 +76,7 @@
 
                 <!-- Logo -->
                 <a href="http://www.prisons.gov.ng/#" class="navbar-brand" style="padding:0;margin:0">
-                  <img src="<%= static_path(@conn, "/images/logo2.png") %>" alt="NPS Logo" style="max-width:140px">
+                  <img src="/images/logo2.png" alt="NPS Logo" style="max-width:140px">
                 </a>
                 <!-- End Logo -->
 
@@ -266,32 +267,32 @@
 
       <div class="u-outer-spaces-helper"></div>
       <!-- JS Global Compulsory -->
-      <script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/jquery-migrate.min.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/jquery.easing.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/popper.min.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/bootstrap.min.js") %>"></script>
+      <!-- <script src="/js/jquery.min.js"></script> -->
+      <script src="/js/jquery-migrate.min.js"></script>
+      <script src="/js/jquery.easing.js"></script>
+      <script src="/js/popper.min.js"></script>
+      <script src="/js/bootstrap.min.js"></script>
 
       <!-- JS Implementing Plugins -->
-      <script src="<%= static_path(@conn, "/js/appear.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/hs.megamenu.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/slick.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/typed.min.js") %>"></script>
+      <script src="/js/appear.js"></script>
+      <script src="/js/hs.megamenu.js"></script>
+      <script src="/js/slick.js"></script>
+      <script src="/js/typed.min.js"></script>
 
       <!-- JS Unify -->
-      <script src="<%= static_path(@conn, "/js/hs.core.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/hs.carousel.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/hs.header.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/hs.hamburgers.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/hs.tabs.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/hs.text-slideshow.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/hs.go-to.js") %>"></script>
+      <script src="/js/hs.core.js"></script>
+      <script src="/js/hs.carousel.js"></script>
+      <script src="/js/hs.header.js"></script>
+      <script src="/js/hs.hamburgers.js"></script>
+      <script src="/js/hs.tabs.js"></script>
+      <script src="/js/hs.text-slideshow.js"></script>
+      <script src="/js/hs.go-to.js"></script>
 
       <!-- JS Customization -->
-      <script src="<%= static_path(@conn, "/js/custom.js") %>"></script>
+      <script src="/js/custom.js"></script>
 
         <!-- bootstrap datepicker -->
-      <script src="<%= static_path(@conn, "/plugins/datepicker/bootstrap-datepicker.js") %>"></script>
+      <script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
 
         <!-- JS Plugins Init. -->
         <script>
@@ -347,20 +348,20 @@
 
 
       <!----LIBRARIES-->
-      <script src="<%= static_path(@conn, "/angular/angular.js") %>"></script>
-      <script src="<%= static_path(@conn, "/angular/angular-route.js") %>"></script>
-      <script src="<%= static_path(@conn, "/js/dirPagination.js") %>"></script>
-      <script src="<%= static_path(@conn, "/angular/angular-sanitize.js") %>"></script>
-      <script src="<%= static_path(@conn, "/angular/angular-cookies.js") %>"></script>
+      <script src="/angular/angular.js"></script>
+      <script src="/angular/angular-route.js"></script>
+      <script src="/js/dirPagination.js"></script>
+      <script src="/angular/angular-sanitize.js"></script>
+      <script src="/angular/angular-cookies.js"></script>
 
       <!----MODULE-->
-      <script src="<%= static_path(@conn, "/js/controllers/module.js") %>"></script>
+      <script src="/js/controllers/module.js"></script>
 
       <!--- CONTROLLERS---->
       <%= for js <- assigns[:js] do %>
-        <script src="<%= static_path(@conn, js) %>"></script>
+        <script src="<%= js %>"></script>
       <% end %>
 
-    <script src="<%= static_path(@conn, "/js/controllers/directives.js") %>"></script>
+    <script src="/js/controllers/directives.js"></script>
   </body>
 </html>

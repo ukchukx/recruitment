@@ -185,8 +185,8 @@ defmodule Recruitment.Recruit do
     |> List.first
   end
 
-  defp as_map(%Recruit{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :attachments, :personal_detail, :educational_qualifications, :professional_qualifications, :work_experience])
-  defp as_map(struct), do: struct |> Map.from_struct |> Map.delete(:__meta__)
+  def as_map(%Recruit{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :attachments, :personal_detail, :educational_qualifications, :professional_qualifications, :work_experience])
+  def as_map(struct), do: struct |> Map.from_struct |> Map.delete(:__meta__)
 
   def signin_with_email_and_password(conn, email, pass) do
     recruit = Repo.get_by(Recruit, email: email)

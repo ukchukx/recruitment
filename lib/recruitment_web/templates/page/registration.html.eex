@@ -66,7 +66,7 @@
         <div class="row mb-3">
           <div class="col-md-12">
             <label  style="font-weight:bold">Title <span class="text-danger">*</span></label>
-            <select value="<%= @current_user.personal_details.title %>" required class="form-control" name="title">
+            <select value="<%= @current_user.personal_detail.title %>" required class="form-control" name="title">
               <option value="mr">Mr</option>
               <option value="miss">Miss</option>
               <option value="mrs">Mrs</option>
@@ -88,13 +88,13 @@
         <div class="row mb-3">
           <div class="col-md-12">
             <label  style="font-weight:bold">Middle name</label>
-            <input value="<%= @current_user.personal_details.mname %>" type="text" class="form-control" name="mname">
+            <input value="<%= @current_user.personal_detail.mname %>" type="text" class="form-control" name="mname">
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-12">
             <label  style="font-weight:bold">Gender <span class="text-danger">*</span></label>
-            <select value="<%= @current_user.personal_details.gender %>" ng-model="gender" ng-init="gender='<%= @current_user.personal_details.gender %>'" required name="gender" class="form-control">
+            <select value="<%= @current_user.personal_detail.gender %>" ng-model="gender" ng-init="gender='<%= @current_user.personal_detail.gender %>'" required name="gender" class="form-control">
               <option value="female">Female</option>
               <option value="male">Male</option>
             </select>
@@ -104,7 +104,7 @@
                  <div class="row mb-3">
           <div class="col-md-12">
             <label  style="font-weight:bold">Nationality <span class="text-danger">*</span></label>
-            <select value="<%= @current_user.personal_details.nationality %>" required name="nationality" class="form-control">
+            <select value="<%= @current_user.personal_detail.nationality %>" required name="nationality" class="form-control">
               <%= for country <- @countries do %>
                 <%= if country.name == "Nigeria" do %>
                   <option selected value='<%= country.name %>'><%= country.name %></option>
@@ -122,7 +122,7 @@
           <div class="row mb-3">
             <div class="col-md-12">
               <label style="font-weight:bold">Address</label>
-              <input value="<%= @current_user.personal_details.permAddress %>" required type="text" name="permAddress"  class="form-control">
+              <input value="<%= @current_user.personal_detail.permAddress %>" required type="text" name="permAddress"  class="form-control">
             </div>
           </div>
           
@@ -144,9 +144,9 @@
           <div class="row mb-3">
             <div class="col-md-12">
               <label style="font-weight:bold">LGA Of Origin</label>
-              <select id="permLga" value="<%= @current_user.personal_details.permLga %>" required name="permLga" class="form-control">
+              <select id="permLga" value="<%= @current_user.personal_detail.permLga %>" required name="permLga" class="form-control">
                 <%= for lga <- @permLgas do %>
-                  <%= if lga.name == @current_user.personal_details.permLga do %>
+                  <%= if lga.name == @current_user.personal_detail.permLga do %>
                     <option selected value='<%= lga.name %>'><%= lga.name %></option>
                   <% else %>
                     <option value='<%= lga.name %>'><%= lga.name %></option>
@@ -162,20 +162,20 @@
         <div class="row mb-3">
           <div class="col-md-12">
             <label  style="font-weight:bold">Date of Birth <span class="text-danger">*</span></label>
-            <input data-date-format="dd/mm/yyyy" value="<%= @current_user.personal_details.dob %>" required type="text" name="dob" class="form-control datepicker" ng-model="dob" ng-init="dob='<%= @current_user.personal_details.dob %>'" ng-change="calculate_age(dob)">
+            <input data-date-format="dd/mm/yyyy" value="<%= @current_user.personal_detail.dob %>" required type="text" name="dob" class="form-control datepicker" ng-model="dob" ng-init="dob='<%= @current_user.personal_detail.dob %>'" ng-change="calculate_age(dob)">
           </div>
-          <input type="hidden" name="age" id="age">
+          <input type="hidden" name="age" id="age" value="<%= @current_user.personal_detail.age %>">
         </div>
         <div class="row mb-3">
           <div class="col-md-12">
             <label style="font-weight:bold">Height (M)</label>
-            <input value="<%= @current_user.personal_details.height %>" type="text" name="height" class="form-control">
+            <input value="<%= @current_user.personal_detail.height %>" type="text" name="height" class="form-control">
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-12">
             <label style="font-weight:bold">National Identification Number <span class="text-danger">*</span></label>
-            <input value="<%= @current_user.personal_details.nin %>" required type="text" name="nin"  class="form-control">
+            <input value="<%= @current_user.personal_detail.nin %>" required type="text" name="nin"  class="form-control">
           </div>
         </div>
         <div class="row mb-3">
@@ -187,13 +187,13 @@
         <div class="row mb-3">
           <div class="col-md-12">
             <label style="font-weight:bold">Telephone number <span class="text-danger">*</span></label>
-            <input value="<%= @current_user.personal_details.phone %>" required type="phone" name="phone" class="form-control">
+            <input value="<%= @current_user.personal_detail.phone %>" required type="phone" name="phone" class="form-control">
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-12">
             <label style="font-weight:bold">Preferred address of Contact</label>
-            <textarea name="prefAddress" rows="5" class="form-control"><%= @current_user.personal_details.prefAddress %></textarea>
+            <textarea name="prefAddress" rows="5" class="form-control"><%= @current_user.personal_detail.prefAddress %></textarea>
           </div>
         </div>      
         <hr>
@@ -202,7 +202,7 @@
           <div class="row mb-3">
             <div class="col-md-12">
               <label style="font-weight:bold">Address</label>
-              <input value="<%= @current_user.personal_details.curAddress %>" required type="text" name="curAddress"  class="form-control">
+              <input value="<%= @current_user.personal_detail.curAddress %>" required type="text" name="curAddress"  class="form-control">
             </div>
           </div>
           
@@ -224,9 +224,9 @@
           <div class="row mb-3">
             <div class="col-md-12">
               <label style="font-weight:bold">LGA</label>
-              <select id="curLga" value="<%= @current_user.personal_details.curLga %>" required name="curLga" class="form-control">
+              <select id="curLga" value="<%= @current_user.personal_detail.curLga %>" required name="curLga" class="form-control">
                 <%= for lga <- @curLgas do %>
-                  <%= if lga.name == @current_user.personal_details.curLga do %>
+                  <%= if lga.name == @current_user.personal_detail.curLga do %>
                     <option selected value='<%= lga.name %>'><%= lga.name %></option>
                   <% else %>
                     <option value='<%= lga.name %>'><%= lga.name %></option>
@@ -253,7 +253,7 @@
     </div>
 </section>
 <script>
-  const lgas = <%= @lgas %>;
+  const lgas = <%= @lgas |> Poison.encode! |> raw %>;
   
   function stateChanged(which, ev) {
     const options = lgas

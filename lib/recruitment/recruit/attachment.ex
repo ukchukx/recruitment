@@ -14,6 +14,6 @@ defmodule Recruitment.Recruit.Attachment do
   @doc false
   def changeset(attachment, attrs) do
     attachment
-    |> cast(attrs, [:title, :path])
+    |> cast(attrs, [:title, :path, :recruit_id])
   end
 end

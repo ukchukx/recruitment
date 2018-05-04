@@ -22,6 +22,6 @@ defmodule Recruitment.Recruit.ProfessionalQualification do
   @doc false
   def changeset(professional_qualification, attrs) do
     professional_qualification
-    |> cast(attrs, [:startdate, :enddate, :qualification, :reg_no, :certificate_title, :institution, :city, :country, :level, :grade, :highest_qual])
+    |> cast(attrs, [:startdate, :enddate, :qualification, :reg_no, :certificate_title, :institution, :city, :country, :level, :grade, :highest_qual, :recruit_id])
   end
 end

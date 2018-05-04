@@ -4,7 +4,7 @@ defmodule Recruitment.Recruit.PersonalDetail do
   alias Recruitment.Recruit.Recruit
 
   @fields [:title, :mname, :gender, :nationality, :dob, :height, :nin, :phone, :permAddress, :permStreet, :permLga, 
-      :permState, :curAddress, :curStreet, :curLga, :curState, :prefAddress, :stage, :status]
+      :permState, :curAddress, :curStreet, :curLga, :curState, :prefAddress, :stage, :age, :status, :recruit_id]
 
   schema "personal_details" do
     field :curAddress, :string
@@ -23,8 +23,9 @@ defmodule Recruitment.Recruit.PersonalDetail do
     field :permStreet, :string
     field :phone, :string
     field :prefAddress, :string
-    field :stage, :integer
-    field :status, :integer
+    field :age, :integer
+    field :stage, :integer, default: 0
+    field :status, :integer, default: 0
     field :title, :string
     belongs_to :recruit, Recruit
   end

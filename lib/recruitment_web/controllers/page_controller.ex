@@ -140,7 +140,7 @@ defmodule RecruitmentWeb.PageController do
 
       paf -> 
         case Recruit.update_recruit(current_user, %{
-          application_stage: params["application_stage"],
+          application_stage: String.trim(params["application_stage"]),
           position_applied_for: paf}) do
           {:ok, _} -> :ok    
           {:error, err} ->
@@ -158,7 +158,7 @@ defmodule RecruitmentWeb.PageController do
 
         case Recruit.create_personal_detail(params) do
           {:ok, _} ->
-            case Recruit.update_recruit(current_user, %{application_stage: params["application_stage"]}) do
+            case Recruit.update_recruit(current_user, %{application_stage: String.trim(params["application_stage"])}) do
               {:ok, _} -> :ok
               {:error, err} ->
                 Logger.error "Update application_stage #{inspect err}"
@@ -170,9 +170,9 @@ defmodule RecruitmentWeb.PageController do
             redirect conn, to: page_path(conn, :registration) 
         end
       _ ->   
-        case Recruit.update_personal_detail(current_user.personal_details, params) do
+        case Recruit.update_personal_detail(current_user.personal_detail, params) do
           {:ok, _} ->
-            case Recruit.update_recruit(current_user, %{application_stage: params["application_stage"]}) do
+            case Recruit.update_recruit(current_user, %{application_stage: String.trim(params["application_stage"])}) do
               {:ok, _} -> :ok
               {:error, err} ->
                 Logger.error "Update application_stage #{inspect err}"
@@ -193,8 +193,8 @@ defmodule RecruitmentWeb.PageController do
 
       false ->  
         current_user = Recruit.load_personal_details(current_user)
-        countries = Recruit.list_countries()
-        lgas = Recruit.list_lgas()
+        countries = Recruit.list_countries() |> Enum.map(&Recruit.as_map/1)
+        lgas = Recruit.list_lgas()|> Enum.map(&Recruit.as_map/1)
         states = Enum.reduce(lgas, [], fn (%{state: state}, acc) -> 
           if state in acc do
             acc
@@ -203,14 +203,50 @@ defmodule RecruitmentWeb.PageController do
           end
         end)
 
-        curState = current_user.personal_details.curState || "Abia"
-        permState = current_user.personal_details.permState || "Abia"
-        curLgas = Enum.filter(lgas, fn %{state: state} ->  
-          state == current_user.personal_details.curState
-        end)
-        permLgas = Enum.filter(lgas, fn %{state: state} ->  
-          state == current_user.personal_details.permState
-        end)
+        curState = 
+          case current_user.personal_detail do
+            nil -> "Abia"
+            %{curState: curState} -> curState || "Abia"
+          end
+
+        permState = 
+          case current_user.personal_detail do
+            nil -> "Abia"
+            %{permState: permState} -> permState || "Abia"
+          end
+        curLgas = Enum.filter(lgas, fn %{state: state} -> state == curState end)
+        permLgas = Enum.filter(lgas, fn %{state: state} -> state == permState end)
+
+        current_user = 
+          case current_user.personal_detail do
+            nil ->
+              pd = %{
+                recruit_id: current_user.id,
+                curAddress: "",
+                curLga: "",
+                curState: "",
+                curStreet: "",
+                dob: "",
+                gender: "",
+                height: "",
+                mname: "",
+                nationality: "",
+                nin: "",
+                permAddress: "",
+                permLga: "",
+                permState: "",
+                permStreet: "",
+                phone: "",
+                age: 0,
+                prefAddress: "",
+                stage: 0,
+                status: 0,
+                title: ""
+              }
+              %{current_user | personal_detail: pd}
+
+            _ -> current_user 
+          end
 
 
         js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
@@ -257,7 +293,7 @@ defmodule RecruitmentWeb.PageController do
     params = Map.put(params, "recruit_id", current_user.id)
     case form do
       "next" ->
-        case Recruit.update_recruit(current_user, %{application_stage: params["application_stage"]}) do
+        case Recruit.update_recruit(current_user, %{application_stage: String.trim(params["application_stage"])}) do
           {:ok, _} -> :ok
           {:error, err} ->
             Logger.error "Update application_stage #{inspect err}"
@@ -320,7 +356,7 @@ defmodule RecruitmentWeb.PageController do
     params = Map.put(params, "recruit_id", current_user.id)
     case form do
       "next" ->
-        case Recruit.update_recruit(current_user, %{application_stage: params["application_stage"]}) do
+        case Recruit.update_recruit(current_user, %{application_stage: String.trim(params["application_stage"])}) do
           {:ok, _} -> :ok
           {:error, err} ->
             Logger.error "Update application_stage #{inspect err}"

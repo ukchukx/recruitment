@@ -22,6 +22,7 @@ defmodule Recruitment.Repo.Migrations.CreatePersonalDetails do
       add :prefAddress, :string
       add :stage, :integer
       add :status, :integer
+      add :age, :integer
       add :recruit_id, references(:recruit, on_delete: :nothing)
     end
 

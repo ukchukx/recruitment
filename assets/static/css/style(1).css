@@ -4,7 +4,7 @@
 @font-face {
 	font-family: "cristmas";
 	src:url("christmas/webfont/fonts/cristmas.eot");
-	src:url("christmas/webfont/fonts/cristmas.eot?#iefix") format("embedded-opentype"),
+	src:url("christmas/webfont/fonts/cristmas.eot") format("embedded-opentype"),
 	url("christmas/webfont/fonts/cristmas.woff") format("woff"),
 	url("christmas/webfont/fonts/cristmas.ttf") format("truetype"),
 	url("christmas/webfont/fonts/cristmas.svg#cristmas") format("svg");
