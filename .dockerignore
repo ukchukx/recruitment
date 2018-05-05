@@ -1,5 +1,5 @@
-deps
-test
-_build
 logs
-assets
+_build
+deps
+assets/node_modules
+test
