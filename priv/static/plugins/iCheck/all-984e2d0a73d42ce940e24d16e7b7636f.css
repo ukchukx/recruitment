@@ -1,0 +1,61 @@
+/* iCheck plugin skins
+----------------------------------- */
+@import url("minimal/_all.css");
+/*
+@import url("minimal/minimal-54595474eb025589ef8c5704696072c6.css?vsn=d");
+@import url("minimal/red-52960d89e37a574d549ad5ae0eb2f879.css?vsn=d");
+@import url("minimal/green-3a3eee0a50b64bfef71ebb15e9979f89.css?vsn=d");
+@import url("minimal/blue-9eef37d8c984df5c29347255d8c5b459.css?vsn=d");
+@import url("minimal/aero-e29e2b4d6f24542dfbb284b31c844f48.css?vsn=d");
+@import url("minimal/grey-f6c2d55dea92b2c28283819f125be34f.css?vsn=d");
+@import url("minimal/orange-c3dee264188ea3abc9baa1efb805574b.css?vsn=d");
+@import url("minimal/yellow-1c9778e949bb5dcb5da66f5773076cdc.css?vsn=d");
+@import url("minimal/pink-b2626a2dd4d4cdd873d15a4db9102ac9.css?vsn=d");
+@import url("minimal/purple-a1a8ed5d8b33bd1b7b3ad6a930c4b599.css?vsn=d");
+*/
+
+@import url("square/_all.css");
+/*
+@import url("square/square-7cee8b5bdd9db1a43ec1d4c729db61d4.css?vsn=d");
+@import url("square/red-1f0c88767f8662fe69191d2b0ff3ce12.css?vsn=d");
+@import url("square/green-a25b026ddc3447b7fb6ba4fc4db2fe67.css?vsn=d");
+@import url("square/blue-37fd35194ed2735b31d71b8b8c063898.css?vsn=d");
+@import url("square/aero-8c9918a4ce2a9f444d9674fcc8d4da6b.css?vsn=d");
+@import url("square/grey-8c0a80c689cd8176c324c402f48c63a6.css?vsn=d");
+@import url("square/orange-1b46b279782ee19166e4adb0de9a321b.css?vsn=d");
+@import url("square/yellow-803151143a0cdcb7c9feda59239d6302.css?vsn=d");
+@import url("square/pink-cf1781d0a5354fdd51718baa011b5b8e.css?vsn=d");
+@import url("square/purple-d984ee2e9817197feb9c1b6b6ab3f6ce.css?vsn=d");
+*/
+
+@import url("flat/_all.css");
+/*
+@import url("flat/flat-6fa1e49cc4285d1a3235bad9a8ed66bb.css?vsn=d");
+@import url("flat/red-4658cf51c7ebc03032c079613490d321.css?vsn=d");
+@import url("flat/green-bf390f69cbc338be15d87cc71765632b.css?vsn=d");
+@import url("flat/blue-49032edc038b83a25c8a131aecf75be5.css?vsn=d");
+@import url("flat/aero-86b48b9735011dd5b8ee51ac0c6c596d.css?vsn=d");
+@import url("flat/grey-39a7d52f6aa68236e831b008a94a0d94.css?vsn=d");
+@import url("flat/orange-0ef50fcaa082c901c33fa70f14ebc6b6.css?vsn=d");
+@import url("flat/yellow-666c3ef525205da04457f00154a87e1b.css?vsn=d");
+@import url("flat/pink-8e1a199af13e53e53fb10e2c6691251e.css?vsn=d");
+@import url("flat/purple-26dfaa87fb4d7052af4a1b06db8165e3.css?vsn=d");
+*/
+
+@import url("line/_all.css");
+/*
+@import url("line/line-542b9eb60a6d727795fa45d301a76534.css?vsn=d");
+@import url("line/red-85c4e6a31ab1a557b86490dd49d99ee7.css?vsn=d");
+@import url("line/green-3c217d73f848a943bd1894bbae1c7927.css?vsn=d");
+@import url("line/blue-36971d85eb07dbcbfc2ffbbed3799d57.css?vsn=d");
+@import url("line/aero-cd6c7f8d730210a9f6ce35a1898dfab0.css?vsn=d");
+@import url("line/grey-80735a9b9ca7759c71de47b3ff3dad00.css?vsn=d");
+@import url("line/orange-f35e31fa785ed1b5c5f8ba8f5b103f7f.css?vsn=d");
+@import url("line/yellow-edbcdae35bbf0d9ff98793f717629f27.css?vsn=d");
+@import url("line/pink-ea6bc301cef03ef3010cedc2241a7a2a.css?vsn=d");
+@import url("line/purple-9c4b7747cf0e1942c2b9cb64b7cb5281.css?vsn=d");
+*/
+
+@import url("polaris/polaris-c1f2d5935133a73fa69ac1fe6b43b9dd.css?vsn=d");
+
+@import url("futurico/futurico-63ad182fa03de6924d05d4141b97e931.css?vsn=d");

@@ -2,7 +2,6 @@
 mix deps.get --only prod
 cd assets
 npm i
-./node_modules/brunch/bin/brunch build --production
+npm run deploy
 cd ..
-MIX_ENV=prod mix do phx.digest, release --verbose
-docker build -t recruitment .
+MIX_ENV=prod mix do compile, phx.digest, release --verbose

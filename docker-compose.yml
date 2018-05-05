@@ -7,3 +7,4 @@ services:
     network_mode: host
     volumes:
       - "${PWD}/logs:/app/logs"
+      - "/var/www/html/nps/prison_cms_files:/var/www/html/nps/prison_cms_files"

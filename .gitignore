@@ -2,6 +2,7 @@
 /_build
 !_build/prod/rel/recruitment/releases/1.0.0/recruitment.tar.gz
 /db
+/logs
 /deps
 /*.ez
 
@@ -17,7 +18,7 @@ npm-debug.log
 # Since we are building assets from assets/,
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
-/priv/static/
+# /priv/static/
 
 # Files matching config/*.secret.exs pattern contain sensitive
 # data and you should not commit them into version control.
