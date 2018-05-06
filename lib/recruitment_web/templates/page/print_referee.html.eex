@@ -86,10 +86,10 @@ Prisons Service. </li>
 
       
   </div>
-<%# 
+
   <script>
   setTimeout(function(){ 
     window.print();window.close(); 
     
   }, 10000);
-  </script> %>
+  </script>
