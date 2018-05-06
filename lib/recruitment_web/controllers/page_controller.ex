@@ -557,7 +557,7 @@ defmodule RecruitmentWeb.PageController do
   end
 
   def done(%{assigns: %{current_user: current_user}} = conn, _params) do
-    js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+    js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
     assigns = 
       %{@base_assigns | js: js}
       |> Map.put(:current_user, current_user)
@@ -570,7 +570,7 @@ defmodule RecruitmentWeb.PageController do
     params_id = params["id"] |> String.trim |> String.to_integer
     case params_id do
       ^id ->
-        js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+        js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
         assigns = 
           %{@base_assigns | js: js}
           |> Map.put(:details, Recruit.get_applicant_details(id))
@@ -587,7 +587,7 @@ defmodule RecruitmentWeb.PageController do
     params_id = params["id"] |> String.trim |> String.to_integer
     case params_id do
       ^id ->
-        js = @base_assigns[:js] ++ ["public/js/controllers/recruit/recruitRegistrationController.js"]
+        js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
         assigns = 
           %{@base_assigns | js: js}
           |> Map.put(:details, Recruit.get_applicant_details(id))

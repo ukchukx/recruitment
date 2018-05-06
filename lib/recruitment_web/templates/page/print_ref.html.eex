@@ -164,7 +164,7 @@
                             </tr>  
                             <tr ng-repeat="attach in attachments" ng-init="{{ext=attach.path.split('.').pop()}}">
                             <td>{{$index +1}}</td>
-                            <td><img ng-src="/public/images/{{ext}}_icon.png" style="width:20px;"></td>
+                            <td><img ng-src="/images/{{ext}}_icon.png" style="width:20px;"></td>
                             <td><a href="/prison_cms_files/{{attach.path}}" style="text-decoration: underline;color:#000">{{attach.title}}</a></td>
                             </tr>  
                             </table>

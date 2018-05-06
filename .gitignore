@@ -11,6 +11,7 @@ erl_crash.dump
 
 # Generated on crash by NPM
 npm-debug.log
+.sobelow
 
 # Static artifacts
 /assets/node_modules
