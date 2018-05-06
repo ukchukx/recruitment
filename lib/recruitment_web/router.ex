@@ -28,8 +28,8 @@ defmodule RecruitmentWeb.Router do
   scope "/", RecruitmentWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/recruit/", PageController, :index
-    post "/recruit/", PageController, :login_signup
+    get "/recruit", PageController, :index
+    post "/recruit", PageController, :login_signup
     get "/recruit/positions", PageController, :positions
     post "/recruit/positions", PageController, :positions_post
     get "/recruit/registration", PageController, :registration
@@ -47,7 +47,7 @@ defmodule RecruitmentWeb.Router do
     post "/recruit/logout", PageController, :logout
     get "/recruit/logout", PageController, :logout
     get "/prison_cms_files/:file", PageController, :get_file
-    get "/*path", PageController, :index
+    get "/*path", Redirect, to: "/recruit"
   end
 
   # Other scopes may use custom stacks.
