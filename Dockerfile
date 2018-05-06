@@ -22,6 +22,6 @@ RUN cd assets/ && \
     mix do compile, phx.digest && \
     mkdir -p /var/www/html/nps/prison_cms_files
 
-USER default
+#  USER default
 
 CMD ["mix", "phx.server"]
