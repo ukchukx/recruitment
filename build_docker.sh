@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t recruitment -f Dockerfile .
+docker build -t recruitment .
