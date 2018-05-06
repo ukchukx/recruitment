@@ -81,7 +81,7 @@ config :recruitment, RecruitmentWeb.Endpoint,
 # Configure your database
 config :recruitment, Recruitment.Repo,
   adapter: Ecto.Adapters.MySQL,
-  username: "root",
-  password: "bunturoot",
-  database: "prison_cms",
+  username: "prisonsp_michael",
+  password: "admin99yu76@",
+  database: "prisonsp_cms",
   pool_size: 15
