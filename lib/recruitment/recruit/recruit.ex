@@ -4,7 +4,7 @@ defmodule Recruitment.Recruit do
   """
 
   import Ecto.Query, warn: false
-  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
+  import Comeonin.Bcrypt, only: [dummy_checkpw: 0]
   import Plug.Conn
   alias Recruitment.Repo
   require Logger
@@ -232,21 +232,11 @@ defmodule Recruitment.Recruit do
     %Recruit{password: password} = recruit = Repo.get_by(Recruit, email: email)
     
     cond do
-      recruit && checkpw(pass, password) ->
-      {:ok, signin(conn, recruit)}
+      recruit && php_checkpw(pass, password) ->
+        {:ok, signin(conn, recruit)}
       recruit ->
-        Logger.info "Check with PHP"
-        # verification_url = Application.get_env :recruitment, :verification_url
-        # %HTTPotion.Response{body: body} =
-        #   Task.async(fn ->  
-        #     HTTPotion.get "#{verification_url}?op=verify&pass=#{pass}&hash=#{password}"
-        #   end)
-        #   |> Task.await
-
-        case php_checkpw(pass, password) do
-          true -> {:ok, signin(conn, recruit)}
-          _ ->   {:error, :unauthorized, conn}
-        end
+        Logger.error "php_checkpw returned #{inspect x}"
+        {:error, :unauthorized, conn}
       true ->
         dummy_checkpw()
         {:error, :not_found, conn}
