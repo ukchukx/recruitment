@@ -50,7 +50,7 @@
       <h4>Upload all your <strong>Credentials</strong></h4>
     </div>
     
-      <h5><%= @position.hint %> to complete the registration process</h5>
+      <h5><%= @position[:hint] %> to complete the registration process</h5>
   
   </header>
   <hr/>
