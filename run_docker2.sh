@@ -1,4 +1,6 @@
 #/bin/bash
+docker rm -f recruitment0 recruitment1 recruitment2 recruitment3 recruitment4
+
 docker run --restart=unless-stopped \
    --network=host \
    -e "PORT=4000" \
