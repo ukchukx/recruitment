@@ -214,13 +214,39 @@ defmodule Recruitment.Recruit do
   def as_map(%Attachment{} = struct), do: struct |> Map.from_struct |> Map.drop([:__meta__, :recruit])
   def as_map(struct), do: struct |> Map.from_struct |> Map.delete(:__meta__)
 
+  def php_checkpw(pass, hash) do
+    "php -q cmd.php verify '#{pass}' '#{hash}'"
+    |> String.to_charlist
+    |> :os.cmd
+    |> Kernel.==('true')
+  end
+
+  def php_hashpw(pass) do
+    "php -q cmd.php hash '#{pass}'"
+    |> String.to_charlist
+    |> :os.cmd
+    |> to_string
+  end
+
   def signin_with_email_and_password(conn, email, pass) do
-    recruit = Repo.get_by(Recruit, email: email)
+    %Recruit{password: password} = recruit = Repo.get_by(Recruit, email: email)
+    
     cond do
-      recruit && checkpw(pass, recruit.password) ->
+      recruit && checkpw(pass, password) ->
       {:ok, signin(conn, recruit)}
       recruit ->
-        {:error, :unauthorized, conn}
+        Logger.info "Check with PHP"
+        # verification_url = Application.get_env :recruitment, :verification_url
+        # %HTTPotion.Response{body: body} =
+        #   Task.async(fn ->  
+        #     HTTPotion.get "#{verification_url}?op=verify&pass=#{pass}&hash=#{password}"
+        #   end)
+        #   |> Task.await
+
+        case php_checkpw(pass, password) do
+          true -> {:ok, signin(conn, recruit)}
+          _ ->   {:error, :unauthorized, conn}
+        end
       true ->
         dummy_checkpw()
         {:error, :not_found, conn}

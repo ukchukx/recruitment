@@ -44,8 +44,7 @@ defmodule Recruitment.Recruit.Recruit do
   defp put_pass_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
-        put_change(changeset, :password, Comeonin.Bcrypt.hashpwsalt(pass))
-
+        put_change(changeset, :password, Recruitment.Recruit.php_hashpw(pass))
       _ -> 
         changeset
     end

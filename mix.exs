@@ -45,6 +45,7 @@ defmodule Recruitment.Mixfile do
       {:cors_plug, "~> 1.4"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
+      {:httpotion, "~> 3.1.0"},
       {:distillery, "~> 1.5", runtime: false},
     ]
   end

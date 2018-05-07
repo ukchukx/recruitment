@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :recruitment,
-  ecto_repos: [Recruitment.Repo]
+  ecto_repos: [Recruitment.Repo],
+  verification_url: "localhost/verify.php"
 
 # Configures the endpoint
 config :recruitment, RecruitmentWeb.Endpoint,
