@@ -7,7 +7,7 @@ ENV PORT=4000 MIX_ENV=prod
 
 RUN mix do local.hex --force, local.rebar --force && \
     curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
-    apt-get install -y -q nodejs php5 php5-readline php5-cli
+    apt-get install -y -q nodejs php php-readline php-cli
 
 # Cache elixir deps
 ADD mix.exs mix.lock ./

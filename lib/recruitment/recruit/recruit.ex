@@ -235,7 +235,6 @@ defmodule Recruitment.Recruit do
       recruit && php_checkpw(pass, password) ->
         {:ok, signin(conn, recruit)}
       recruit ->
-        Logger.error "php_checkpw returned #{inspect x}"
         {:error, :unauthorized, conn}
       true ->
         dummy_checkpw()
