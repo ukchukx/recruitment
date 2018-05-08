@@ -92,21 +92,38 @@ defmodule RecruitmentWeb.PageController do
         end
 
       "login" ->
-        email = params["email"]
-        password = params["password"]
-        
-        case Recruit.signin_with_email_and_password(conn, email, password) do
-          {:ok, %{assigns: %{current_user: %{completed: completed}}} = conn} ->
-            case completed do
-              1 -> redirect conn, to: page_path(conn, :done)
-              _ -> redirect conn, to: page_path(conn, :positions)
-            end
+        case params["g-recaptcha-response"] do
+          nil ->
+            assigns = 
+              @base_assigns 
+              |> Map.put(:loginErrorMessage, "You are not Human!")
 
-          {:error, reason, conn} ->
-            Logger.error "Could not login after signup because of #{inspect reason}"
-
-            assigns = Map.put(@base_assigns, :loginErrorMessage, "Invalid email or password")
             render conn, "index.html", assigns
+
+          "" ->
+            assigns = 
+              @base_assigns 
+              |> Map.put(:loginErrorMessage, "You are not Human!")
+              
+            render conn, "index.html", assigns
+
+          _ ->
+            email = params["email"]
+            password = params["password"]
+            
+            case Recruit.signin_with_email_and_password(conn, email, password) do
+              {:ok, %{assigns: %{current_user: %{completed: completed}}} = conn} ->
+                case completed do
+                  1 -> redirect conn, to: page_path(conn, :done)
+                  _ -> redirect conn, to: page_path(conn, :positions)
+                end
+
+              {:error, reason, conn} ->
+                Logger.error "Could not login because of #{inspect reason}"
+
+                assigns = Map.put(@base_assigns, :loginErrorMessage, "Invalid email or password")
+                render conn, "index.html", assigns
+            end
         end
     end
   end
