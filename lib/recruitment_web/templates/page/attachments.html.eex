@@ -181,7 +181,7 @@
 
 
 <!-- MESSAGE MODAL WINDOW -->
-<div class="modal fade" id="preview_Window_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" style="overflow: scroll !important;" id="preview_Window_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content modal-lg" style="float:none;margin:auto;padding:0 3px;width:130%">
       
