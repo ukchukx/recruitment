@@ -44,7 +44,7 @@
     </div>
 </div>
 
-  <header class="text-center g-width-60x--md mx-auto g-mb-30">
+  <header class="text-center mx-auto">
     <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
       <h2 class="h3 u-heading-v2__title g-color-gray-dark-v2 g-font-weight-600" style="margin-top:20px">Just in a moment <%= "#{@current_user.fname} #{@current_user.sname}" %></h2>
       <h4>Upload all your <strong>Credentials</strong></h4>
@@ -107,7 +107,7 @@
             </div>
             
           </div>
-          <div class="row mb-3">
+          <div class="row mb-3" style="margin-top: 20px;">
             <div class="col-md-12 text-center">
               <button class="btn btn-md u-btn-primary rounded" type="submit">Upload Doc.</button>
             </div>
@@ -186,11 +186,11 @@
     <div class="modal-content modal-lg" style="float:none;margin:auto;padding:0 3px;width:130%">
       
         <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button"  ng-click="close_preview()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h5 class="modal-title" id="" style="text-align:center;font-weight: bold">My Details </h5>
       </div>
       
-       <div class="modal-body" style="padding:;" ng-init="get_applicants_other_details(user_details.recruit_id)">
+       <div class="modal-body" style="padding:;" ng-init="get_applicants_other_details(<%= @current_user.id %>)">
                    <div class="loader">
                    <img src="/images/loader.gif" style="width:50px">    
                    </div>
@@ -206,7 +206,7 @@
                     </div>
                                 
                                 <div style="text-align:center">
-                                <img ng-repeat="attachment in attachments | filter:{ title: 'Passport Photograph' }" ng-src="http://{{dirlocation}}prison_cms_files/{{attachment.path}}" style="width:30%;margin:0 auto;float:none">
+                                <img ng-repeat="attachment in attachments | filter:{ title: 'Passport Photograph' }" ng-src="/prison_cms_files/{{attachment.path}}" style="width:30%;margin:0 auto;float:none">
                             </div>
                             </div>
 
@@ -352,10 +352,10 @@
                             <td>Type</td>
                             <td>Doc. Title</td>
                             </tr>  
-                            <tr ng-repeat="attach in attachments" ng-init="{{ext=attach.path.split('.').pop()}}">
+                            <tr ng-repeat="attach in attachments">
                             <td>{{$index +1}}</td>
-                            <td><img ng-src="http://{{dirlocation}}public/images/{{ext}}_icon.png" style="width:20px;"></td>
-                            <td><a href="http://{{dirlocation}}prison_cms_files/{{attach.path}}" style="text-decoration: underline;color:#000">{{attach.title}}</a></td>
+                            <td><img ng-src="/images/{{attach.file_type}}_icon.png" style="width:20px;"></td>
+                            <td><a href="/prison_cms_files/{{attach.path}}" style="text-decoration: underline;color:#000">{{attach.title}}</a></td>
                             </tr>  
                             </table>
                             </div>        

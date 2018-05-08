@@ -43,7 +43,7 @@
         </div> 
     </div>
 </div>
-  <header class="text-center g-width-60x--md mx-auto g-mb-30">
+  <header class="text-center mx-auto">
     <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
       <h2 class="h3 u-heading-v2__title g-color-gray-dark-v2 g-font-weight-600" style="margin-top:20px">You're almost done <%= "#{@current_user.fname} #{@current_user.sname}" %></h2>
       <h4>Please fill up your <strong>Work Experience</strong></h4>
@@ -81,7 +81,7 @@
               <input type="text" required name="role" class="form-control">
             </div>
           </div>
-          <div class="row mb-3">
+          <div class="row mb-3" style="margin-top: 20px;">
             <div class="col-md-12 text-center">
               <button class="btn btn-md u-btn-primary rounded" type="submit">Save</button>
             </div>

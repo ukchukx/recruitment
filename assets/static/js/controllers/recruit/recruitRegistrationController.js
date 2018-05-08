@@ -126,8 +126,12 @@
    return response.status;
    });
         
-    $('#preview_Window_Modal').appendTo("body").modal('show');    
+    $('#preview_Window_Modal').appendTo("body").removeClass('fade').addClass('show');   
     }
+    $scope.close_preview = function(){
+      $('#preview_Window_Modal').removeClass('show').addClass('fade'); 
+    }
+    
 
     $scope.add_professional_qualification = function(){
     // $('#pro_qualification_Window_Modal').appendTo("body").modal('show');   

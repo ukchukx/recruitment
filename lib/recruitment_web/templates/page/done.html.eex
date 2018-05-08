@@ -39,7 +39,7 @@
 
   
 
-   <header class="text-center g-width-60x--md mx-auto g-mb-30">
+   <header class="text-center mx-auto">
     <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
       <h2 class="h3 u-heading-v2__title g-color-gray-dark-v2 g-font-weight-600" style="margin-top:20px">Hello <%= "#{@current_user.fname} #{@current_user.sname}" %></h2>
       

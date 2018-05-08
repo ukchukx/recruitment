@@ -46,7 +46,7 @@
 </div>
 
 
-  <header class="text-center g-width-60x--md mx-auto g-mb-30">
+  <header class="text-center mx-auto">
     <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
     
       <h2 class="h3 u-heading-v2__title g-color-gray-dark-v2 g-font-weight-600" style="margin-top:20px">Welldone <%= "#{@current_user.fname} #{@current_user.sname}" %></h2>
@@ -246,7 +246,7 @@
           </tr>
         </thead>
         <thead>
-        <tr class="loader" id="load_qualification" style="display:none">
+        <tr class="loader" id="load_qualification">
         <td colspan="8" style="text-align:center"><img src="/images/loader.gif" style="width:40px;"></td>  
         </tr>
       </thead>
@@ -288,7 +288,7 @@
           </tr>
         </thead>
         <thead>
-        <tr class="loader" id="load_professional" style="display:none">
+        <tr class="loader" id="load_professional">
         <td colspan="8" style="text-align:center"><img src="/images/loader.gif" style="width:40px;"></td>  
         </tr>
         </thead>

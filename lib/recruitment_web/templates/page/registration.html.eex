@@ -45,7 +45,7 @@
 </div>
 
  
-  <header class="text-center g-width-60x--md mx-auto g-mb-30">
+  <header class="text-center mx-auto">
       
     <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
 
@@ -193,7 +193,7 @@
         <div class="row mb-3">
           <div class="col-md-12">
             <label style="font-weight:bold">Preferred address of Contact</label>
-            <textarea name="prefAddress" rows="5" class="form-control"><%= @current_user.personal_detail.prefAddress %></textarea>
+            <textarea name="prefAddress" rows="2" class="form-control"><%= @current_user.personal_detail.prefAddress %></textarea>
           </div>
         </div>      
         <hr>
@@ -240,7 +240,7 @@
       </div>
     </div>
 
-    <div class="row mb-6">
+    <div class="row mb-6" style="margin-top: 20px;">
       <input type="hidden" name="application_stage" value="<%= if @current_user.application_stage < 3 do %> <%= 3 %> <% else %> <%= @current_user.application_stage %> <% end %>">
       <div class="col-sm-12" style="text-align: center;">
         <a class="btn btn-md btn-danger" href="/recruit/logout">Logout</a>
