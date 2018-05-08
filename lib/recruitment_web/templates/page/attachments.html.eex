@@ -49,8 +49,6 @@
       <h2 class="h3 u-heading-v2__title g-color-gray-dark-v2 g-font-weight-600" style="margin-top:20px">Just in a moment <%= "#{@current_user.fname} #{@current_user.sname}" %></h2>
       <h4>Upload all your <strong>Credentials</strong></h4>
     </div>
-    
-      <h5><%= @position[:hint] %> to complete the registration process</h5>
   
   </header>
   <hr/>

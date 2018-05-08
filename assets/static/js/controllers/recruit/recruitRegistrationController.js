@@ -15,7 +15,8 @@
     $scope.classifications = angular.fromJson(response.data.classifications);
     $scope.countries = angular.fromJson(response.data.countries);
    },function errorCallback(response) {
-   return response.status;
+    alert("You may have to clear your browser's Cache");
+    return response.status;
    });
 
       
@@ -23,9 +24,11 @@
     //////////FETCH RESULTS
    $http.get(datagrab.completeUrlLocation+"recruit_api/get_qualifications?id="+id)
    .then(function(response) {
+    $('.loader').hide();
     $scope.edu_qualifications = angular.fromJson(response.data.qualifications);
     $scope.pro_qualifications = angular.fromJson(response.data.professionals); 
    },function errorCallback(response) {
+    alert("You may have to clear your browser's Cache");
    return response.status;
    });
    
@@ -42,6 +45,7 @@
    $scope.attachments = angular.fromJson(response.data.attachments); 
    $scope.work_experience  = angular.fromJson(response.data.work_experience);
    },function errorCallback(response) {
+    alert("You may have to clear your browser's Cache");
    return response.status;
    });
 
@@ -77,14 +81,22 @@
     }
 
     
-    $scope.delete_result = function (id,user_id,table){
+    $scope.delete_result = function (id,user_id,table, item){
     var conf = confirm("Do you want to delete this record?");
     if(conf==true){
     //////////DELETE RESULT
+    $('#load_'+table).show();
    $http.get(datagrab.completeUrlLocation+"recruit_api/delete_result?id="+id+"&user_id="+user_id+"&table="+table)
    .then(function(response) {
+   $('.loader').hide(); 
     if(response.data==''){
-    window.location.reload();    
+      if(table=='qualification'){  
+        var index = $scope.edu_qualifications.indexOf(item);
+        $scope.edu_qualifications.splice(index, 1);
+      } else{
+        var index = $scope.pro_qualifications.indexOf(item);
+        $scope.pro_qualifications.splice(index, 1);  
+      }  
     }   
    },function errorCallback(response) {
    return response.status;

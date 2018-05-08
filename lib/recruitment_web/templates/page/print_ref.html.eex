@@ -55,7 +55,7 @@
                             <td style="font-weight:bold">Nationality</td>
                             <td><%= @details.nationality %></td>
                             <td style="font-weight:bold">Perm Address</td>
-                            <td><%= "#{@details.permStreet}, #{@details.permAddress}" %></td>
+                            <td><%= "#{@details.permAddress}" %></td>
                             </tr>
 
                             <tr>

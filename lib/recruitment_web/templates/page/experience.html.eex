@@ -72,13 +72,13 @@
           <div class="row mb-3">
             <div class="col-md-12">
               <label>Organization</label>
-              <input type="text" name="organization" class="form-control">
+              <input type="text" required name="organization" class="form-control">
             </div>
           </div>
           <div class="row mb-3">
             <div class="col-md-12">
               <label>Role</label>
-              <input type="text" name="role" class="form-control">
+              <input type="text" required name="role" class="form-control">
             </div>
           </div>
           <div class="row mb-3">

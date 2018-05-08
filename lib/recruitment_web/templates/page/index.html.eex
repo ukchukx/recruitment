@@ -66,11 +66,12 @@
                 <input required name="password" class="form-control g-color-black g-brd-left-none g-brd-white g-bg-transparent g-color-white g-placeholder-white g-pl-0 g-pr-15 g-py-13" type="password" placeholder="Password">
               </div>
             </div>
+            <div class="g-recaptcha" data-sitekey="6Lcuqk4UAAAAAFErYJo2BeY0K6VhHmNo_38L2aA9"></div>
             <div class="g-mb-60">
               <button class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="submit">Login</button>
             </div>
               
-              <div class="g-mb-30" style=";margin-top: 11.5rem;text-align:center">
+              <div class="g-mb-30" style=";margin-top: 6rem;text-align:center">
             </div>
           </form>
           <!-- End Form -->

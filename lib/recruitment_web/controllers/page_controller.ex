@@ -424,7 +424,7 @@ defmodule RecruitmentWeb.PageController do
       %{@base_assigns | js: js}
       |> Map.put(:current_user, current_user)
       |> Map.put(:attachments_list, attachments_list)
-      |> Map.put(:position, position)
+      # |> Map.put(:position, position)
       |> Map.put(:passport_uploaded, false)
       |> Map.put(:ssce_uploaded, false)
       |> Map.put(:medical_cert, false)
