@@ -62,15 +62,15 @@
       <div class="alert alert-warning"><%= @msg %></div>
       <% end %>
     <label style="font-weight:bold">Select Category</label>
-  <select value="" required class="form-control" name="position_category" ng-model="user_details.position_category"  onfocus="$('.alert').hide();">
+  <select value="" required class="form-control" name="position_category"  onfocus="$('.alert').hide();">
   <option value="0">--SELECT CATEGORY--</option>  
-  <option value="{{position.id}}" ng-repeat="position in positions">{{position.title}}</option>
+  <option value="{{position.id}}" ng-repeat="position in positions" ng-selected="{{position.id == user_details.position_category}}">{{position.title}}</option>
   </select>
 
   <label ng-show="user_details.position_category !='0'" style="font-weight:bold">Select Position</label>
-  <select ng-show="user_details.position_category !='0'" required class="form-control" name="position_applied_for" ng-model="user_details.position_applied_for" required id="position_applied_for"  onfocus="$('.alert').hide();">
+  <select ng-show="user_details.position_category !='0'" required class="form-control" name="position_applied_for" required id="position_applied_for"  onfocus="$('.alert').hide();">
   <option value="0">--SELECT POSITION--</option>    
-  <option value="{{sub_position.sub_position_id}}" ng-repeat="sub_position in sub_positions | filter:{ position_id: user_details.position_category}">{{sub_position.sub_title}}</option>
+  <option value="{{sub_position.sub_position_id}}" ng-repeat="sub_position in sub_positions | filter:{ position_id: user_details.position_category}" ng-selected="{{sub_position.sub_position_id == user_details.position_applied_for}}">{{sub_position.sub_title}}</option>
   </select>
   <div class="alert alert-success" ng-show="user_details.position_applied_for !='0'" style="margin-top:10px;text-align:center">
   {{sub_positions[user_details.position_applied_for -1].hint}}  
