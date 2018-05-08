@@ -229,17 +229,21 @@ defmodule Recruitment.Recruit do
   end
 
   def signin_with_email_and_password(conn, email, pass) do
-    %Recruit{password: password} = recruit = Repo.get_by(Recruit, email: email)
-    
-    cond do
-      recruit && php_checkpw(pass, password) ->
-        {:ok, signin(conn, recruit)}
-      recruit ->
-        {:error, :unauthorized, conn}
-      true ->
+    case Repo.get_by(Recruit, email: email) do
+      %Recruit{password: password} = recruit ->
+        cond do
+          recruit && php_checkpw(pass, password) ->
+            {:ok, signin(conn, recruit)}
+          recruit ->
+            {:error, :unauthorized, conn}
+          true ->
+            dummy_checkpw()
+            {:error, :not_found, conn}
+        end
+      _ ->  
         dummy_checkpw()
-        {:error, :not_found, conn}
-    end
+        {:error, :not_found, conn} 
+    end    
   end
 
   def signin(conn, %Recruit{}=recruit) do
