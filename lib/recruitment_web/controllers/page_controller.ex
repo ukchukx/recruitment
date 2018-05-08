@@ -417,7 +417,7 @@ defmodule RecruitmentWeb.PageController do
   defp get_attachment_assigns(current_user) do
     current_user = Recruit.load_attachments(current_user)
     attachments_list = Recruit.list_attachments_list()
-    position = Recruit.load_chosen_position(current_user.position_applied_for)
+    # position = Recruit.load_chosen_position(current_user.position_applied_for)
 
     js = @base_assigns[:js] ++ ["/js/controllers/recruit/recruitRegistrationController.js"]
     assigns = 
